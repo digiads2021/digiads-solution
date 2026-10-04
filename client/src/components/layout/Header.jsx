@@ -69,7 +69,7 @@ export default function Header() {
         </div>
       </div>
 
-      <header ref={headerRef} className={`header ${scrolled ? 'header--scrolled' : ''}`} onMouseLeave={hoverClose}>
+      <header ref={headerRef} className={`header ${scrolled ? 'header--scrolled' : ''} ${openPillar ? 'header--mega' : ''}`} onMouseLeave={hoverClose}>
         <div className="container header__inner">
           <Logo />
           <nav className="nav" aria-label="Main">
@@ -80,12 +80,12 @@ export default function Header() {
                     type="button" className="nav__trigger" aria-expanded={openKey === p.key} aria-controls={`mega-${p.key}`}
                     onClick={() => setOpenKey(openKey === p.key ? null : p.key)}
                   >
-                    {p.name} <ChevronDown size={16} aria-hidden="true" />
+                    <span>{p.name}</span> <ChevronDown size={16} className="nav__chev" aria-hidden="true" />
                   </button>
                 </li>
               ))}
               <li className="nav__item--secondary" onMouseEnter={() => hoverOpen(null)}><Link className="nav__link" to="/blog">Resources</Link></li>
-              <li onMouseEnter={() => hoverOpen(null)}><Link className="nav__link" to="/about">About</Link></li>
+              <li className="nav__item--tertiary" onMouseEnter={() => hoverOpen(null)}><Link className="nav__link" to="/about">About</Link></li>
             </ul>
           </nav>
           <div className="header__actions">
@@ -100,10 +100,11 @@ export default function Header() {
         </div>
         {openPillar && (
           <div onMouseEnter={() => clearTimeout(hoverTimer.current)}>
-            <MegaMenu pillar={openPillar} id={`mega-${openPillar.key}`} onNavigate={() => setOpenKey(null)} onTalk={talk} />
+            <MegaMenu pillar={openPillar} id={`mega-${openPillar.key}`} phone={settings?.contact?.phone} onNavigate={() => setOpenKey(null)} onTalk={talk} />
           </div>
         )}
       </header>
+      {openPillar && <div className="mega-backdrop" aria-hidden="true" />}
 
       <MobileMenu open={mobileOpen} onClose={() => setMobileOpen(false)} navigation={navigation} settings={settings} onSearch={() => setSearchOpen(true)} onTalk={talk} />
       <SearchModal open={searchOpen} onClose={() => setSearchOpen(false)} onTalk={talk} />

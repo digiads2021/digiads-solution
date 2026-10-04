@@ -26,7 +26,7 @@ export const getNavigation = asyncHandler(async (req, res) => {
       const title = s.subcategory || cat.name;
       const key = `${cat.slug}|${title}`;
       let col = columns.find((c) => c.key === key);
-      if (!col) columns.push((col = { key, title, category: { name: cat.name, slug: cat.slug }, order: cat.order, links: [], total: 0 }));
+      if (!col) columns.push((col = { key, title, category: { name: cat.name, slug: cat.slug, icon: cat.icon }, order: cat.order, links: [], total: 0 }));
       col.total += 1;
       col.links.push({ name: s.name, url: `/services/${cat.slug}/${s.slug}`, popular: s.popular });
     }

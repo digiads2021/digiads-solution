@@ -16,7 +16,9 @@ const createFor = (type, successMessage) =>
       if (s) { data.service = s._id; data.serviceName = s.name; }
     }
     const enquiry = await Enquiry.create(data);
-    notifyNewEnquiry(enquiry); // fire-and-forget
+    // Awaited (with a time limit) because a serverless function may be frozen as soon as it responds,
+    // which would silently drop a fire-and-forget email. Email failures never fail the submission.
+    await notifyNewEnquiry(enquiry);
     created(res, { id: enquiry._id, message: successMessage });
   });
 
@@ -26,12 +28,14 @@ export const createConsultation = createFor('consultation', 'Your consultation r
 
 const buildFilter = (q) => {
   const filter = { isArchived: q.archived === 'true' };
-  if (q.type) filter.type = String(q.type);
-  if (q.status) filter.status = String(q.status);
-  if (q.from || q.to) {
+  if (typeof q.type === 'string' && q.type) filter.type = q.type;
+  if (typeof q.status === 'string' && q.status) filter.status = q.status;
+  // Dates come from <input type="date"> (YYYY-MM-DD) and are interpreted in India time (IST).
+  const isDate = (d) => typeof d === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(d);
+  if (isDate(q.from) || isDate(q.to)) {
     filter.createdAt = {};
-    if (q.from) filter.createdAt.$gte = new Date(q.from);
-    if (q.to) filter.createdAt.$lte = new Date(`${q.to}T23:59:59`);
+    if (isDate(q.from)) filter.createdAt.$gte = new Date(`${q.from}T00:00:00+05:30`);
+    if (isDate(q.to)) filter.createdAt.$lte = new Date(`${q.to}T23:59:59.999+05:30`);
   }
   if (q.q) {
     const rx = new RegExp(escapeRegex(String(q.q)), 'i');
@@ -59,7 +63,7 @@ export const exportEnquiries = asyncHandler(async (req, res) => {
   const esc = (v) => `"${String(v ?? '').replace(/"/g, '""').replace(/\r?\n/g, ' ')}"`;
   const csv = [cols.join(','), ...items.map((i) => cols.map((c) => esc(c === 'createdAt' ? new Date(i[c]).toISOString() : i[c])).join(','))].join('\n');
   res.setHeader('Content-Type', 'text/csv; charset=utf-8');
-  res.setHeader('Content-Disposition', `attachment; filename="digiads-${req.query.type || 'enquiries'}.csv"`);
+  res.setHeader('Content-Disposition', `attachment; filename="digiads-${String(req.query.type || 'enquiries').replace(/[^a-z_-]/gi, '')}.csv"`);
   res.send(csv);
 });
 

@@ -1,7 +1,9 @@
+import { useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Check } from 'lucide-react';
 import Icon from '../../utils/icons.jsx';
 import logoMark from '../../assets/logo-mark.svg';
+import useOffscreenPause from '../../hooks/useOffscreenPause.js';
 
 // Hub-and-spoke diagram: one DigiAds hub wired to six service areas.
 // Coordinates live in a 640×480 SVG; the node cards are positioned in % of the same box.
@@ -70,8 +72,10 @@ function Diagram() {
 }
 
 export default function ConnectedServices() {
+  const ref = useRef(null);
+  useOffscreenPause(ref);
   return (
-    <section className="section cs" aria-labelledby="cs-title">
+    <section ref={ref} className="section cs" aria-labelledby="cs-title">
       <div className="container cs__grid">
         <div className="cs__copy">
           <div className="eyebrow">One connected platform</div>

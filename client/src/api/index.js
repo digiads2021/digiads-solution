@@ -74,7 +74,7 @@ export const admin = {
   deleteSubscriber: (id) => api.delete(`/newsletter/${id}`).then(unwrap),
   exportSubscribers: () => api.get('/newsletter/export', { responseType: 'blob' }),
 
-  settings: () => api.get('/settings').then(unwrap),
+  settings: () => api.get('/admin/settings').then(unwrap),
   updateSettings: (body) => api.put('/settings', body).then(unwrap),
 
   uploadImage: (file) => {

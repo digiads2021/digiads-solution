@@ -1,10 +1,14 @@
+import { useRef } from 'react';
 import Breadcrumbs from '../layout/Breadcrumbs.jsx';
+import useOffscreenPause from '../../hooks/useOffscreenPause.js';
 import Icon from '../../utils/icons.jsx';
 
 // Dark, animated page header shared by Contact and the legal pages (styles in pages.css).
 export default function PageHeroDark({ crumbs, pill, icon, title, lead, children, narrow = false, id = 'page-title' }) {
+  const ref = useRef(null);
+  useOffscreenPause(ref);
   return (
-    <section className={`dk-hero ${narrow ? 'dk-hero--narrow' : ''}`} aria-labelledby={id}>
+    <section ref={ref} className={`dk-hero ${narrow ? 'dk-hero--narrow' : ''}`} aria-labelledby={id}>
       <div className="hero__bg" aria-hidden="true"><i /><i /><i /></div>
       <div className="container">
         <Breadcrumbs items={crumbs} />

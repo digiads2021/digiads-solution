@@ -15,3 +15,8 @@ export const updateSettings = asyncHandler(async (req, res) => {
   await s.save();
   ok(res, s);
 });
+
+// GET /api/admin/settings (admin) - full, uncached settings for the admin form.
+export const adminGetSettings = asyncHandler(async (req, res) => {
+  ok(res, await WebsiteSetting.getSingleton());
+});

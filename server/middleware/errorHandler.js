@@ -2,6 +2,8 @@ import env from '../config/env.js';
 import logger from '../utils/logger.js';
 
 export const notFound = (req, res) => {
+  res.removeHeader('Vercel-CDN-Cache-Control');
+  res.set('Cache-Control', 'no-store');
   res.status(404).json({ success: false, message: `Route not found: ${req.method} ${req.originalUrl}` });
 };
 
@@ -28,6 +30,10 @@ export const errorHandler = (err, req, res, next) => {
   if (err.type === 'entity.too.large') { status = 413; message = 'Request is too large'; }
 
   if (status >= 500) logger.error(`${req.method} ${req.originalUrl} ->`, err.stack || err);
+
+  // Never let the CDN keep an error that a public route had marked as cacheable.
+  res.removeHeader('Vercel-CDN-Cache-Control');
+  res.set('Cache-Control', 'no-store');
 
   res.status(status).json({
     success: false,

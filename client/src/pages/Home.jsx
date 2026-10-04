@@ -33,6 +33,7 @@ export default function Home() {
     <div className="home">
       <Seo
         title="DigiAds Business Solutions – Registration, Compliance, Legal, Technology & UAE Setup"
+        description="DigiAds Business Solutions: business registration, GST and income tax, MCA compliance, trademarks, licences, ISO, legal documents, websites and apps, and UAE company formation — in one place."
         path="/"
         schema={[organizationSchema(settings), websiteSchema(), homeFaqs.length ? faqSchema(homeFaqs) : null]}
       />

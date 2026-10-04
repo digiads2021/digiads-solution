@@ -4,6 +4,7 @@ import { BrowserRouter } from 'react-router-dom';
 import App from './App.jsx';
 import { SiteProvider } from './context/SiteContext.jsx';
 import { AuthProvider } from './context/AuthContext.jsx';
+import '@fontsource-variable/plus-jakarta-sans/wght.css';
 import './styles/index.css';
 
 ReactDOM.createRoot(document.getElementById('root')).render(

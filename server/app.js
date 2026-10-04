@@ -8,9 +8,10 @@ import morgan from 'morgan';
 import env from './config/env.js';
 import corsOptions from './config/cors.js';
 import apiRoutes from './routes/index.js';
-import { sitemap } from './controllers/sitemap.controller.js';
+import { sitemap, robots } from './controllers/sitemap.controller.js';
 import sanitizeInput from './middleware/sanitizeInput.js';
 import { globalLimiter } from './middleware/rateLimiters.js';
+import { publicCache } from './middleware/cache.js';
 import { notFound, errorHandler } from './middleware/errorHandler.js';
 
 const app = express();
@@ -38,9 +39,12 @@ app.use('/api', (req, res, next) => {
   next();
 });
 
+// API responses are private by default; public read routes opt in to CDN caching (middleware/cache.js).
+app.use('/api', (req, res, next) => { res.set('Cache-Control', 'no-store'); next(); });
 app.use('/api', globalLimiter, apiRoutes);
 app.use('/uploads', express.static('uploads', { maxAge: '7d' }));
-app.get('/sitemap.xml', sitemap);
+app.get('/sitemap.xml', publicCache(3600), sitemap);
+app.get('/robots.txt', publicCache(3600), robots);
 app.get('/', (req, res) => res.json({ success: true, data: { name: 'DigiAds API', health: '/api/health' } }));
 
 app.use(notFound);

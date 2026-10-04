@@ -22,3 +22,9 @@ export const sitemap = asyncHandler(async (req, res) => {
   ];
   res.type('application/xml').send(`<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${urls.join('')}</urlset>`);
 });
+
+// GET /robots.txt - points crawlers at the sitemap on whichever domain the site is served from.
+export const robots = (req, res) => {
+  const base = env.siteUrl.replace(/\/$/, '');
+  res.type('text/plain').send(`User-agent: *\nAllow: /\nDisallow: /admin\nDisallow: /api/\n\nSitemap: ${base}/sitemap.xml\n`);
+};

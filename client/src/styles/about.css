@@ -18,7 +18,7 @@
 
 /* Hero board: the five pillars as a glowing roadmap card */
 .ab-board { position: relative; padding: 24px 12px; }
-.ab-board__glow { position: absolute; inset: 5% 10%; border-radius: 50%; background: radial-gradient(circle, rgba(47, 107, 255, 0.5), rgba(18, 163, 154, 0.2) 45%, transparent 70%); filter: blur(30px); }
+.ab-board__glow { position: absolute; inset: 5% 10%; border-radius: 50%; background: radial-gradient(circle, rgba(47, 107, 255, 0.45), rgba(18, 163, 154, 0.18) 42%, transparent 72%); }
 .ab-board__card {
   position: relative; padding: var(--sp-5); border-radius: 24px; background: #fff; color: var(--text-primary);
   box-shadow: 0 30px 60px -20px rgba(0, 0, 0, 0.55);

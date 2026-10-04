@@ -1,7 +1,8 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Search, Building2, Receipt, ShieldCheck, Earth, CircleCheck, ArrowRight, Sparkles } from 'lucide-react';
 import { useConsultation } from '../forms/ConsultationProvider.jsx';
+import useOffscreenPause from '../../hooks/useOffscreenPause.js';
 
 const WORDS = ['start.', 'comply.', 'protect.', 'build.', 'go global.'];
 const STATS = [
@@ -63,8 +64,10 @@ function HeroVisual() {
 export default function Hero({ onSearch }) {
   const { openConsultation } = useConsultation();
   const word = useRotatingWord();
+  const ref = useRef(null);
+  useOffscreenPause(ref);
   return (
-    <section className="hero" aria-labelledby="hero-title">
+    <section ref={ref} className="hero" aria-labelledby="hero-title">
       <div className="hero__bg" aria-hidden="true"><i /><i /><i /></div>
       <div className="container hero__grid">
         <div className="hero__copy reveal">

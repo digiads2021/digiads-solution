@@ -60,3 +60,6 @@ ul, ol { margin: 0; padding: 0; }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
 }
+
+/* Decorative animations pause while their section is off-screen (see useOffscreenPause). */
+[data-offscreen='true'], [data-offscreen='true'] *, [data-offscreen='true'] *::before, [data-offscreen='true'] *::after { animation-play-state: paused !important; }

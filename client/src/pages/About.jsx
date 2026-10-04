@@ -1,3 +1,4 @@
+import { useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Sparkles } from 'lucide-react';
 import Seo from '../components/shared/Seo.jsx';
@@ -6,6 +7,7 @@ import Icon from '../utils/icons.jsx';
 import { values, journey } from '../utils/siteContent.js';
 import { useConsultation } from '../components/forms/ConsultationProvider.jsx';
 import useScrollReveal from '../hooks/useScrollReveal.js';
+import useOffscreenPause from '../hooks/useOffscreenPause.js';
 
 const STATS = [
   { value: '150+', label: 'Services' },
@@ -63,13 +65,15 @@ function HeroBoard() {
 export default function About() {
   const { openConsultation } = useConsultation();
   useScrollReveal('.about > .section');
+  const heroRef = useRef(null);
+  useOffscreenPause(heroRef);
 
   return (
     <div className="about">
       <Seo title="About DigiAds Business Solutions" description="DigiAds is a business solutions partner for registration, compliance, taxation, legal documents, certifications, technology and UAE business setup." path="/about" />
 
       {/* ---------- Hero ---------- */}
-      <section className="ab-hero" aria-labelledby="about-title">
+      <section ref={heroRef} className="ab-hero" aria-labelledby="about-title">
         <div className="hero__bg" aria-hidden="true"><i /><i /><i /></div>
         <div className="container">
           <Breadcrumbs items={[{ label: 'Home', to: '/' }, { label: 'About' }]} />

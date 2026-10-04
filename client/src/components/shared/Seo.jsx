@@ -2,6 +2,9 @@ import { useEffect } from 'react';
 import { useSite } from '../../context/SiteContext.jsx';
 import { SITE_URL } from '../../utils/schema.js';
 
+// Used when neither the page nor the admin settings provide a description, so the tag is never removed.
+const DEFAULT_DESCRIPTION = 'Business registration, GST and income tax, MCA compliance, trademark, licences, ISO, legal documents, website and app development, and UAE company formation — in one place.';
+
 const setMeta = (attr, key, content) => {
   let el = document.head.querySelector(`meta[${attr}="${key}"]`);
   if (!content) { el?.remove(); return; }
@@ -17,7 +20,7 @@ export default function Seo({ title, description, path, image, type = 'website',
   const { settings } = useSite();
   const defaults = settings?.seoDefaults || {};
   const fullTitle = title ? (title.includes('DigiAds') ? title : `${title} | DigiAds`) : defaults.title || 'DigiAds Business Solutions';
-  const desc = description || defaults.description || '';
+  const desc = description || defaults.description || DEFAULT_DESCRIPTION;
   const url = `${SITE_URL}${path ?? window.location.pathname}`;
   const schemaJson = JSON.stringify(schema.filter(Boolean));
 

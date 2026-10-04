@@ -86,7 +86,7 @@ export default function Legal({ page }) {
 
   return (
     <div className="legal-page">
-      <Seo title={p.title} path={`/${page}`} />
+      <Seo title={p.title} description={`${p.title} of DigiAds Business Solutions. ${p.summary}`} path={`/${page}`} />
       <PageHeroDark
         narrow
         crumbs={[{ label: 'Home', to: '/' }, { label: p.title }]}

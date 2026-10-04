@@ -8,6 +8,7 @@ import { authenticateAdmin, requireRole } from '../middleware/auth.js';
 import { loginLimiter, formLimiter, newsletterLimiter, searchLimiter } from '../middleware/rateLimiters.js';
 import * as v from '../validators/index.js';
 import ApiError from '../utils/ApiError.js';
+import { publicCache } from '../middleware/cache.js';
 import { usesMemoryStorage } from '../services/storage.service.js';
 
 import * as auth from '../controllers/auth.controller.js';
@@ -64,20 +65,20 @@ router.get('/auth/me', admin, auth.me);
 router.post('/auth/change-password', admin, validate(v.changePasswordSchema), auth.changePassword);
 
 // ---------- Navigation ----------
-router.get('/navigation', nav.getNavigation);
+router.get('/navigation', publicCache(300), nav.getNavigation);
 
 // ---------- Categories ----------
-router.get('/categories', categories.listCategories);
-router.get('/categories/:slug', categories.getCategory);
+router.get('/categories', publicCache(300), categories.listCategories);
+router.get('/categories/:slug', publicCache(300), categories.getCategory);
 router.get('/admin/categories', admin, categories.listCategories);
 router.post('/categories', admin, bustNav, validate(v.categorySchema), categories.createCategory);
 router.put('/categories/:id', admin, bustNav, validate(v.categorySchema), categories.updateCategory);
 router.delete('/categories/:id', ...superadmin, bustNav, categories.deleteCategory);
 
 // ---------- Services ----------
-router.get('/services', services.listServices);
-router.get('/services/search', searchLimiter, services.search);
-router.get('/services/:slug', services.getService);
+router.get('/services', publicCache(300), services.listServices);
+router.get('/services/search', publicCache(120), searchLimiter, services.search);
+router.get('/services/:slug', publicCache(300), services.getService);
 router.get('/admin/services', admin, services.adminListServices);
 router.get('/admin/services/options', admin, services.adminServiceOptions);
 router.get('/admin/services/:id', admin, services.adminGetService);
@@ -87,7 +88,7 @@ router.patch('/services/:id/status', admin, bustNav, services.patchServiceFlags)
 router.delete('/services/:id', ...superadmin, bustNav, services.deleteService);
 
 // ---------- FAQs ----------
-router.get('/faqs', faqs.listFaqs);
+router.get('/faqs', publicCache(300), faqs.listFaqs);
 router.get('/admin/faqs', admin, faqs.adminListFaqs);
 router.post('/faqs', admin, validate(v.faqSchema), faqs.createFaq);
 router.put('/faqs/:id', admin, validate(v.faqSchema), faqs.updateFaq);
@@ -113,9 +114,9 @@ router.patch('/newsletter/:id', admin, newsletter.updateSubscriber);
 router.delete('/newsletter/:id', ...superadmin, newsletter.deleteSubscriber);
 
 // ---------- Blog ----------
-router.get('/blogs', blogs.listBlogs);
-router.get('/blogs/categories', blogs.blogCategories);
-router.get('/blogs/:slug', blogs.getBlog);
+router.get('/blogs', publicCache(120), blogs.listBlogs);
+router.get('/blogs/categories', publicCache(300), blogs.blogCategories);
+router.get('/blogs/:slug', publicCache(300), blogs.getBlog);
 router.get('/admin/blogs', admin, blogs.adminListBlogs);
 router.get('/admin/blogs/:id', admin, blogs.adminGetBlog);
 router.post('/blogs', admin, validate(v.blogSchema), blogs.createBlog);
@@ -123,14 +124,15 @@ router.put('/blogs/:id', admin, validate(v.blogSchema), blogs.updateBlog);
 router.delete('/blogs/:id', admin, blogs.deleteBlog);
 
 // ---------- Testimonials ----------
-router.get('/testimonials', testimonials.listTestimonials);
+router.get('/testimonials', publicCache(300), testimonials.listTestimonials);
 router.get('/admin/testimonials', admin, testimonials.adminListTestimonials);
 router.post('/testimonials', admin, validate(v.testimonialSchema), testimonials.createTestimonial);
 router.put('/testimonials/:id', admin, validate(v.testimonialSchema), testimonials.updateTestimonial);
 router.delete('/testimonials/:id', admin, testimonials.deleteTestimonial);
 
 // ---------- Settings, dashboard, uploads ----------
-router.get('/settings', settings.getSettings);
+router.get('/settings', publicCache(300), settings.getSettings);
+router.get('/admin/settings', admin, settings.adminGetSettings);
 router.put('/settings', ...superadmin, validate(v.settingsSchema), settings.updateSettings);
 router.get('/admin/dashboard', admin, dashboard.getDashboard);
 router.post('/uploads/image', admin, imageUpload('image'), upload.uploadImage);

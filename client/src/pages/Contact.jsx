@@ -1,49 +1,120 @@
-import { Phone, Mail, MapPin, Clock } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { Phone, Mail, MapPin, Clock, MessageCircle, ArrowRight, HelpCircle } from 'lucide-react';
 import Seo from '../components/shared/Seo.jsx';
-import Breadcrumbs from '../components/layout/Breadcrumbs.jsx';
+import PageHeroDark from '../components/shared/PageHeroDark.jsx';
 import ContactForm from '../components/forms/ContactForm.jsx';
 import { useSite } from '../context/SiteContext.jsx';
+import { useConsultation } from '../components/forms/ConsultationProvider.jsx';
 import { PLACEHOLDER } from '../utils/siteContent.js';
+
+const NEXT_STEPS = [
+  { title: 'We review your message', text: 'Your enquiry reaches the right person on our team.' },
+  { title: 'An expert gets in touch', text: 'We understand your goal before recommending anything.' },
+  { title: 'Clear checklist and quote', text: 'You know the documents and fees before work begins.' },
+];
 
 export default function Contact() {
   const { settings } = useSite();
+  const { openConsultation } = useConsultation();
   const c = settings?.contact || {};
-  const rows = [
-    { icon: Phone, label: 'Phone', value: c.phone, href: c.phone && `tel:${c.phone}`, ph: PLACEHOLDER.phone },
-    { icon: Mail, label: 'Email', value: c.email, href: c.email && `mailto:${c.email}`, ph: PLACEHOLDER.email },
-    { icon: MapPin, label: 'Office (India)', value: c.addressIndia, ph: PLACEHOLDER.address },
-    { icon: MapPin, label: 'Office (UAE)', value: c.addressUAE, ph: '[ADD VERIFIED UAE ADDRESS]' },
-    { icon: Clock, label: 'Working hours', value: c.hours, ph: '[ADD WORKING HOURS]' },
+
+  const quick = [
+    { icon: Phone, label: 'Call us', value: c.phone, href: c.phone && `tel:${c.phone}`, ph: PLACEHOLDER.phone, tone: 'blue' },
+    { icon: Mail, label: 'Email us', value: c.email, href: c.email && `mailto:${c.email}`, ph: PLACEHOLDER.email, tone: 'teal' },
+    { icon: Clock, label: 'Working hours', value: c.hours, ph: '[ADD WORKING HOURS]', tone: 'violet' },
   ];
+  const offices = [
+    { label: 'India office', value: c.addressIndia, ph: PLACEHOLDER.address },
+    { label: 'UAE office', value: c.addressUAE, ph: '[ADD VERIFIED UAE ADDRESS]' },
+  ];
+
   return (
-    <>
+    <div className="contact-page">
       <Seo title="Contact DigiAds" description="Contact DigiAds Business Solutions for registration, compliance, legal, technology and UAE business services." path="/contact" />
-      <section className="page-hero">
-        <div className="container">
-          <Breadcrumbs items={[{ label: 'Home', to: '/' }, { label: 'Contact' }]} />
-          <h1>Contact us</h1>
-          <p className="lead">Send us a message and we’ll get back to you. For a quick callback about a specific service, use “Talk to an Expert”.</p>
+
+      <PageHeroDark
+        crumbs={[{ label: 'Home', to: '/' }, { label: 'Contact' }]}
+        pill="We’re here to help"
+        title={<>Let’s talk about <span className="dk-hero__grad">your business</span></>}
+        lead="Send us a message and we’ll get back to you. For a quick callback about a specific service, use “Talk to an Expert”."
+      >
+        <div className="hero__ctas">
+          <button type="button" className="btn btn--glow btn--lg" onClick={() => openConsultation()}>
+            <MessageCircle size={18} aria-hidden="true" /> Talk to an Expert
+          </button>
+          <a href="#contact-form" className="btn btn--outline-white btn--lg">Send a message</a>
+        </div>
+      </PageHeroDark>
+
+      {/* Quick contact tiles overlapping the hero */}
+      <section className="ct-quick" aria-label="Contact details">
+        <div className="container ct-quick__grid">
+          {quick.map(({ icon: I, label, value, href, ph, tone }) => {
+            const body = (
+              <>
+                <span className="ct-quick__icon"><I size={20} aria-hidden="true" /></span>
+                <span className="ct-quick__text">
+                  <small>{label}</small>
+                  {value ? <strong>{value}</strong> : <strong className="muted">{ph}</strong>}
+                </span>
+                {href && <ArrowRight size={16} className="ct-quick__arrow" aria-hidden="true" />}
+              </>
+            );
+            return href
+              ? <a key={label} href={href} className={`ct-quick__item ab-tone--${tone}`}>{body}</a>
+              : <div key={label} className={`ct-quick__item ab-tone--${tone}`}>{body}</div>;
+          })}
         </div>
       </section>
-      <section className="section" style={{ paddingTop: 48 }}>
-        <div className="container contact-grid">
-          <div className="card" style={{ padding: 32 }} data-hide-sticky>
-            <h2 style={{ fontSize: '1.375rem' }}>Send a message</h2>
+
+      <section className="section ct-main">
+        <div className="container ct-grid">
+          <div className="ct-form" id="contact-form" data-hide-sticky>
+            <h2>Send a message</h2>
+            <p className="muted">Fill in the form and our team will get back to you.</p>
             <ContactForm />
           </div>
-          <div style={{ display: 'grid', gap: 16, alignContent: 'start' }}>
-            {rows.map(({ icon: I, label, value, href, ph }) => (
-              <div className="card" key={label} style={{ display: 'flex', gap: 16 }}>
-                <span className="icon-tile"><I size={20} aria-hidden="true" /></span>
-                <div>
-                  <div className="small muted" style={{ fontWeight: 600 }}>{label}</div>
-                  {value ? (href ? <a href={href}>{value}</a> : <span>{value}</span>) : <span className="muted">{ph}</span>}
-                </div>
-              </div>
-            ))}
-          </div>
+
+          <aside className="ct-side">
+            <div className="ct-card ct-callback">
+              <span className="ct-callback__icon"><MessageCircle size={22} aria-hidden="true" /></span>
+              <h3>Prefer a callback?</h3>
+              <p>Tell us which service you need and an expert will call you.</p>
+              <button type="button" className="btn btn--white btn--block" onClick={() => openConsultation()}>Talk to an Expert</button>
+            </div>
+
+            <div className="ct-card">
+              <h3>What happens next</h3>
+              <ol className="ct-steps">
+                {NEXT_STEPS.map((s, i) => (
+                  <li key={s.title}>
+                    <span>{i + 1}</span>
+                    <div><strong>{s.title}</strong><p>{s.text}</p></div>
+                  </li>
+                ))}
+              </ol>
+            </div>
+
+            <div className="ct-card">
+              <h3>Our offices</h3>
+              <ul className="ct-offices">
+                {offices.map((o) => (
+                  <li key={o.label}>
+                    <span className="icon-tile icon-tile--sm"><MapPin size={18} aria-hidden="true" /></span>
+                    <div><small>{o.label}</small>{o.value ? <span>{o.value}</span> : <span className="muted">{o.ph}</span>}</div>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <Link to="/faq" className="ct-faq">
+              <HelpCircle size={20} aria-hidden="true" />
+              <span><strong>Have a quick question?</strong><small>Browse answers to common questions</small></span>
+              <ArrowRight size={16} aria-hidden="true" />
+            </Link>
+          </aside>
         </div>
       </section>
-    </>
+    </div>
   );
 }

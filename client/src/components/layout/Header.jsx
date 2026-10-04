@@ -74,7 +74,7 @@ export default function Header() {
           <Logo />
           <nav className="nav" aria-label="Main">
             <ul className="nav__list">
-              {navigation.map((p) => (
+              {navigation.map((p) => (p.columns?.length ? (
                 <li key={p.key} onMouseEnter={() => hoverOpen(p.key)}>
                   <button
                     type="button" className="nav__trigger" aria-expanded={openKey === p.key} aria-controls={`mega-${p.key}`}
@@ -83,7 +83,9 @@ export default function Header() {
                     <span>{p.name}</span> <ChevronDown size={16} className="nav__chev" aria-hidden="true" />
                   </button>
                 </li>
-              ))}
+              ) : (
+                <li key={p.key} onMouseEnter={() => hoverOpen(null)}><Link className="nav__link" to={`/services?pillar=${p.key}`}>{p.name}</Link></li>
+              )))}
               <li className="nav__item--secondary" onMouseEnter={() => hoverOpen(null)}><Link className="nav__link" to="/blog">Resources</Link></li>
               <li className="nav__item--tertiary" onMouseEnter={() => hoverOpen(null)}><Link className="nav__link" to="/about">About</Link></li>
             </ul>

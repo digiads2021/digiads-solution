@@ -20,7 +20,7 @@ export default function ContactForm() {
   if (success) return <FormSuccess message={success.message} onReset={reset} resetLabel="Send another message" />;
 
   return (
-    <form className="form" noValidate onSubmit={handleSubmit(submitContact)}>
+    <form className="form form--compact form--contact" noValidate onSubmit={handleSubmit(submitContact)}>
       {formError && <div className="form-alert form-alert--error" role="alert">{formError}</div>}
       <div className="form-row">
         <Input label="Full name" required autoComplete="name" error={errors.name} {...bind('name')} />
@@ -28,9 +28,9 @@ export default function ContactForm() {
       </div>
       <Input label="Email" required type="email" autoComplete="email" error={errors.email} {...bind('email')} />
       <Input label="Subject" required error={errors.subject} {...bind('subject')} />
-      <Textarea label="Message" required rows={5} error={errors.message} {...bind('message')} />
+      <Textarea label="Message" required rows={4} error={errors.message} {...bind('message')} />
       <Honeypot {...bind('website')} />
-      <button type="submit" className="btn btn--primary btn--lg" disabled={submitting} style={{ justifySelf: 'start' }}>
+      <button type="submit" className="btn btn--primary btn--lg ct-submit" disabled={submitting}>
         {submitting ? <><Spinner /> Sending…</> : 'Send message'}
       </button>
     </form>

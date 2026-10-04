@@ -23,7 +23,9 @@ export default function MobileMenu({ open, onClose, navigation, settings, onSear
           <button type="button" className="search-trigger drawer__search" style={{ width: '100%', minWidth: 0 }} onClick={() => { onClose(); onSearch(); }}>
             <Search size={18} aria-hidden="true" /> What service are you looking for?
           </button>
-          {navigation.map((p) => (
+          {navigation.map((p) => (!p.columns?.length ? (
+            <Link key={p.key} className="m-link" to={`/services?pillar=${p.key}`} onClick={onClose}>{p.name}</Link>
+          ) : (
             <div className="m-acc" key={p.key}>
               <button type="button" className="m-acc__btn" aria-expanded={expanded === p.key} aria-controls={`m-${p.key}`} onClick={() => setExpanded(expanded === p.key ? null : p.key)}>
                 {p.name} <ChevronDown size={18} aria-hidden="true" />
@@ -42,7 +44,7 @@ export default function MobileMenu({ open, onClose, navigation, settings, onSear
                 </div>
               )}
             </div>
-          ))}
+          )))}
           <Link className="m-link" to="/services" onClick={onClose}>All Services</Link>
           <Link className="m-link" to="/blog" onClick={onClose}>Blog</Link>
           <Link className="m-link" to="/faq" onClick={onClose}>FAQ</Link>

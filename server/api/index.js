@@ -22,14 +22,15 @@ export default async function handler(req, res) {
     app = appMod.default;
     connectDB = dbMod.default;
   } catch (err) {
+    // Details (e.g. which env vars are missing) go to the Vercel logs only — never to visitors.
     console.error('Startup failed:', err.message);
-    return fail(res, err.message.startsWith('Missing required environment variables') ? err.message : 'Server misconfigured');
+    return fail(res, 'Service temporarily unavailable. Please try again shortly.');
   }
   try {
     await connectDB();
   } catch (err) {
     console.error('MongoDB connection failed:', err.message);
-    return fail(res, 'Service temporarily unavailable');
+    return fail(res, 'Service temporarily unavailable. Please try again shortly.');
   }
   return app(req, res);
 }

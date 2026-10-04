@@ -174,28 +174,36 @@ Leads, contact messages and consultations are stored in one `Enquiry` collection
 
 ---
 
-## 8. Deployment
+## 8. Deployment (Vercel — one project, Mumbai region)
 
-**Recommended:** frontend on **Vercel**, API on **Render** (or Railway/VPS), database on **MongoDB Atlas**.
+The website **and** the API deploy together as a single Vercel project, configured by the root `vercel.json`:
 
-### API (Render)
-1. Push the project to GitHub.
-2. Render → New → **Web Service** → choose the repo → **Root directory:** `server`.
-3. Build command: `npm install` · Start command: `npm start`.
-4. Environment variables (from `server/.env.example`):
-   `NODE_ENV=production`, `MONGODB_URI`, `JWT_SECRET`, `CLIENT_URL=https://digiadssolution.in,https://www.digiadssolution.in`, `SITE_URL=https://digiadssolution.in`, `COOKIE_SAMESITE=lax`, plus SMTP values if you want email alerts.
-5. Add a custom domain: `api.digiadssolution.in`. Health check path: `/api/health`.
-6. Use a paid instance for production (free instances sleep, so the first form submission after idle is slow).
-7. **Images:** Render's disk is temporary. Before going live, move admin uploads to cloud storage (e.g. Cloudinary) — change `server/controllers/upload.controller.js` and the multer setup in `server/routes/index.js`.
+- The React app is built from `client/` and served as static files (`client/dist`).
+- The Express API runs as one serverless function (`api/index.js` → `server/`) in **Mumbai (`bom1`)**.
+- `/api/*`, `/sitemap.xml` and `/robots.txt` go to the API; every other path loads the React app.
+- Site and API share one domain, so the login cookie uses `SameSite=Lax` and no CORS setup is needed.
 
-### Frontend (Vercel)
-1. Vercel → New Project → same repo → **Root directory:** `client`. Framework: Vite.
-2. Environment variables:
-   `VITE_API_URL=https://api.digiadssolution.in/api`, `VITE_SITE_URL=https://digiadssolution.in`, `VITE_ASSET_URL=https://api.digiadssolution.in`
-3. Add domains `digiadssolution.in` and `www.digiadssolution.in`. `client/vercel.json` already handles page refreshes on deep links.
-4. Update the `Sitemap:` line in `client/public/robots.txt`. To serve the sitemap from the main domain, add a Vercel rewrite from `/sitemap.xml` to `https://api.digiadssolution.in/sitemap.xml`.
+### Steps
+1. Vercel → Add New → Project → import the repo. **Root Directory: leave empty (repo root).** Framework preset: **Other** (the build settings come from `vercel.json`).
+2. Settings → Functions → **Function Region: Mumbai, India (bom1)** (also set in `vercel.json`).
+3. Environment variables (Production and Preview):
 
-Because the site (`digiadssolution.in`) and the API (`api.digiadssolution.in`) share one domain, the login cookie works with `SameSite=Lax`.
+   | Name | Required | Value |
+   | --- | --- | --- |
+   | `MONGODB_URI` | yes | Atlas connection string (database name `digiads`) |
+   | `JWT_SECRET` | yes | 64+ random characters |
+   | `SITE_URL` | recommended | Public URL, e.g. `https://digiadssolution.in` (sitemap/robots) |
+   | `VITE_SITE_URL` | recommended | Same public URL (canonical links) |
+   | `CLIENT_URL` | only for extra domains | Comma-separated extra origins allowed to call the API |
+   | `CLOUDINARY_URL` or `BLOB_READ_WRITE_TOKEN` | for image uploads | Cloudinary, or connect a Vercel Blob store |
+   | `SMTP_*`, `ENQUIRY_NOTIFY_EMAIL` | optional | Email alerts for new enquiries |
+
+   Do **not** set `VITE_API_URL` or `VITE_ASSET_URL` — the app calls `/api` on its own domain.
+4. MongoDB Atlas → Network Access → allow `0.0.0.0/0` (Vercel has no fixed IPs). For the lowest latency, host the cluster in **AWS Mumbai (ap-south-1)**.
+5. Seed once from your computer (`npm run seed` and `npm run create-admin` with the same `MONGODB_URI`).
+6. Add your custom domain under Settings → Domains.
+
+Health check: `https://<your-domain>/api/health`.
 
 ### SEO note
 This is a single-page React app. Each page sets its own title, description, canonical URL, Open Graph tags and JSON-LD (Organization, Breadcrumb, Service, FAQ, Article). Google can render it, but for the strongest results on service pages, add **build-time prerendering** later (for example `vite-react-ssg` or a prerender script). It keeps the MERN stack and needs no Next.js.
@@ -210,5 +218,6 @@ This is a single-page React app. Each page sets its own title, description, cano
 | `MongoServerError: bad auth` | Check the username/password in `MONGODB_URI` (URL-encode special characters such as `@`). |
 | `querySrv ENOTFOUND` / timeout | Add your IP in Atlas **Network Access**. |
 | Website loads but menus are empty | The API isn't running or the database isn't seeded: run `npm run seed`, then `npm run dev`. |
-| Admin login works then logs out | In production, make sure `CLIENT_URL` exactly matches the site URL and both use HTTPS. |
+| Admin login works then logs out | Remove any `COOKIE_SAMESITE=none` / `VITE_API_URL` left from a split deployment; site and API must share one domain. |
+| Every API call returns 503 on Vercel | `MONGODB_URI` or `JWT_SECRET` is missing, or Atlas Network Access blocks Vercel. Check the function logs. |
 | Port 5000 already in use (macOS AirPlay) | Set `PORT=5050` in `server/.env` and change the proxy target in `client/vite.config.js`. |

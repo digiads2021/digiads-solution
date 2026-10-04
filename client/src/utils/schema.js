@@ -1,3 +1,5 @@
+import { TAGLINE } from './siteContent.js';
+
 // JSON-LD structured data builders (Organization, Breadcrumb, Service, FAQ, Article).
 export const SITE_URL = (import.meta.env.VITE_SITE_URL || window.location.origin).replace(/\/$/, '');
 
@@ -9,6 +11,7 @@ export const organizationSchema = (settings) => {
     '@type': 'Organization',
     name: settings?.siteName || 'DigiAds Business Solutions',
     alternateName: 'digiads',
+    slogan: settings?.tagline || TAGLINE,
     url: SITE_URL,
     logo: `${SITE_URL}/icon-512.png`,
     image: `${SITE_URL}/og-image.png`,

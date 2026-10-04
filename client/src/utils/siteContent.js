@@ -55,6 +55,9 @@ export const BLOG_CATEGORIES = ['Business', 'Startup', 'GST', 'Income Tax', 'MCA
 
 // Official DigiAds contact details and social profiles. Admin > Settings can override any of them;
 // these defaults are used until then (and whenever the settings API is unavailable).
+// Official business tagline.
+export const TAGLINE = 'One stop solutions, for your business';
+
 export const BRAND = {
   contact: {
     phone: '+91 69011 17313',

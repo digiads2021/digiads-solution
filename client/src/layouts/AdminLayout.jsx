@@ -42,7 +42,7 @@ export default function AdminLayout() {
           ))}
         </nav>
         <div className="admin-side__foot">
-          <a href="/" target="_blank" rel="noreferrer" style={{ color: '#c9d4ee', display: 'inline-flex', gap: 6, alignItems: 'center' }}><ExternalLink size={14} /> View website</a>
+          <a href="/" target="_blank" rel="noreferrer" style={{ color: '#d6d3ce', display: 'inline-flex', gap: 6, alignItems: 'center' }}><ExternalLink size={14} /> View website</a>
         </div>
       </aside>
       {open && <div className="drawer-backdrop" style={{ zIndex: 40 }} onClick={() => setOpen(false)} />}

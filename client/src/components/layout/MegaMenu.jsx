@@ -10,21 +10,21 @@ function MegaArt() {
   return (
     <svg className="mega__art" viewBox="0 0 200 170" aria-hidden="true">
       <defs>
-        <linearGradient id="ma-doc" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stopColor="#ffffff" /><stop offset="1" stopColor="#eef3ff" /></linearGradient>
-        <linearGradient id="ma-head" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stopColor="#2f6bff" /><stop offset="1" stopColor="#12a39a" /></linearGradient>
-        <linearGradient id="ma-shield" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stopColor="#7c4dff" /><stop offset="1" stopColor="#2f6bff" /></linearGradient>
+        <linearGradient id="ma-doc" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stopColor="#ffffff" /><stop offset="1" stopColor="#fff7ea" /></linearGradient>
+        <linearGradient id="ma-head" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stopColor="#ffbd59" /><stop offset="1" stopColor="#f59e0b" /></linearGradient>
+        <linearGradient id="ma-shield" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stopColor="#e8590c" /><stop offset="1" stopColor="#ffbd59" /></linearGradient>
         <linearGradient id="ma-coin" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stopColor="#fcd34d" /><stop offset="1" stopColor="#f59e0b" /></linearGradient>
       </defs>
-      <ellipse cx="100" cy="158" rx="78" ry="8" fill="#0b1f4b" opacity=".12" />
+      <ellipse cx="100" cy="158" rx="78" ry="8" fill="#141414" opacity=".12" />
       <g className="mega__art-doc">
-        <rect x="58" y="18" width="86" height="112" rx="10" fill="url(#ma-doc)" stroke="#dbe4f7" />
+        <rect x="58" y="18" width="86" height="112" rx="10" fill="url(#ma-doc)" stroke="#efe6d8" />
         <rect x="58" y="18" width="86" height="20" rx="10" fill="url(#ma-head)" />
         <rect x="58" y="30" width="86" height="8" fill="url(#ma-head)" />
-        <rect x="70" y="50" width="50" height="6" rx="3" fill="#c9d6f5" />
-        <rect x="70" y="63" width="62" height="6" rx="3" fill="#dbe4f7" />
-        <rect x="70" y="76" width="40" height="6" rx="3" fill="#dbe4f7" />
-        <rect x="70" y="95" width="36" height="20" rx="5" fill="#e3f6f4" />
-        <path d="M78 105l5 5 9-10" fill="none" stroke="#0b7a73" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
+        <rect x="70" y="50" width="50" height="6" rx="3" fill="#efe6d8" />
+        <rect x="70" y="63" width="62" height="6" rx="3" fill="#efe6d8" />
+        <rect x="70" y="76" width="40" height="6" rx="3" fill="#efe6d8" />
+        <rect x="70" y="95" width="36" height="20" rx="5" fill="#fff3df" />
+        <path d="M78 105l5 5 9-10" fill="none" stroke="#9a5800" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
       </g>
       <g className="mega__art-coins">
         <ellipse cx="42" cy="146" rx="20" ry="6" fill="#d97706" />
@@ -37,7 +37,7 @@ function MegaArt() {
         <path d="M152 86l26 9v18c0 17-11 29-26 35-15-6-26-18-26-35V95z" fill="url(#ma-shield)" />
         <path d="M141 116l8 8 14-15" fill="none" stroke="#fff" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" />
       </g>
-      <g fill="#12a39a" className="mega__art-spark">
+      <g fill="#f59e0b" className="mega__art-spark">
         <path d="M34 52l3 7 7 3-7 3-3 7-3-7-7-3 7-3z" />
         <path d="M170 40l2 5 5 2-5 2-2 5-2-5-5-2 5-2z" opacity=".7" />
       </g>
@@ -104,10 +104,10 @@ export default function MegaMenu({ pillar, id, phone, onNavigate, onTalk }) {
           <svg className="mega__wave" viewBox="0 0 220 520" preserveAspectRatio="none">
             <defs>
               <linearGradient id="mw-grad" x1="0" y1="0" x2="1" y2="1">
-                <stop offset="0" stopColor="#9ec0ff" /><stop offset=".55" stopColor="#8fe3da" /><stop offset="1" stopColor="#c4b2ff" />
+                <stop offset="0" stopColor="#ffd08a" /><stop offset=".55" stopColor="#ffd08a" /><stop offset="1" stopColor="#ffd9a0" />
               </linearGradient>
               <linearGradient id="mw-grad2" x1="0" y1="0" x2="1" y2="1">
-                <stop offset="0" stopColor="#2f6bff" /><stop offset="1" stopColor="#12a39a" />
+                <stop offset="0" stopColor="#ffbd59" /><stop offset="1" stopColor="#f59e0b" />
               </linearGradient>
             </defs>
             <path d="M220 0V150C150 190 170 260 110 320S20 440 50 520H220Z" fill="url(#mw-grad)" opacity=".75" />

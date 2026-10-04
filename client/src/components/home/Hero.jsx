@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Search, Building2, Receipt, ShieldCheck, Earth, CircleCheck, ArrowRight, Sparkles } from 'lucide-react';
 import { useConsultation } from '../forms/ConsultationProvider.jsx';
+import { TAGLINE } from '../../utils/siteContent.js';
 import useOffscreenPause from '../../hooks/useOffscreenPause.js';
 
 const WORDS = ['start.', 'comply.', 'protect.', 'build.', 'go global.'];
@@ -71,7 +72,7 @@ export default function Hero({ onSearch }) {
       <div className="hero__bg" aria-hidden="true"><i /><i /><i /></div>
       <div className="container hero__grid">
         <div className="hero__copy reveal">
-          <div className="hero__pill"><span className="hero__pill-dot" /> Business services for India &amp; the UAE</div>
+          <div className="hero__pill"><span className="hero__pill-dot" /> {TAGLINE}</div>
           <h1 id="hero-title">
             Everything your business needs to
             <span className="hero__rot" aria-hidden="true"><span key={word}>{word}</span></span>

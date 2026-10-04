@@ -3,7 +3,7 @@ import { Phone, Mail, MapPin } from 'lucide-react';
 import Logo from './Logo.jsx';
 import NewsletterForm from '../forms/NewsletterForm.jsx';
 import { useSite } from '../../context/SiteContext.jsx';
-import { telHref } from '../../utils/siteContent.js';
+import { telHref, TAGLINE } from '../../utils/siteContent.js';
 import SocialLinks from '../shared/SocialLinks.jsx';
 
 export default function Footer() {
@@ -29,7 +29,8 @@ export default function Footer() {
         <div className="footer__main">
           <div className="footer__brand">
             <Logo light />
-            <p>{settings?.tagline || 'Start. Comply. Protect. Build. Go Global.'} Registration, compliance, legal, technology and UAE business services under one roof.</p>
+            <p className="footer__tagline">{settings?.tagline || TAGLINE}</p>
+            <p>Registration, compliance, legal, technology and UAE business services under one roof.</p>
             <ul className="footer__contact">
               {c.phone && <li><Phone size={16} aria-hidden="true" /> <a href={telHref(c.phone)}>{c.phone}</a></li>}
               {c.email && <li><Mail size={16} aria-hidden="true" /> <a href={`mailto:${c.email}`}>{c.email}</a></li>}

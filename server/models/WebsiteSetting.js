@@ -5,7 +5,7 @@ const settingSchema = new mongoose.Schema(
   {
     key: { type: String, default: 'site', unique: true },
     siteName: { type: String, default: 'DigiAds Business Solutions' },
-    tagline: { type: String, default: 'Start. Comply. Protect. Build. Go Global.' },
+    tagline: { type: String, default: 'One stop solutions, for your business' },
     contact: {
       phone: { type: String, default: '+91 69011 17313' },
       email: { type: String, default: 'info@digiadssolution.in' },
@@ -23,7 +23,7 @@ const settingSchema = new mongoose.Schema(
       threads: { type: String, default: 'https://www.threads.com/@digiads.official' },
     },
     seoDefaults: {
-      title: { type: String, default: 'DigiAds Business Solutions – Registration, Compliance, Legal, Technology & UAE Setup' },
+      title: { type: String, default: 'DigiAds Business Solutions – One Stop Solutions for Your Business' },
       description: {
         type: String,
         default: 'Business registration, GST and income tax, MCA compliance, trademark, licences, ISO, legal documents, website and app development, and UAE company formation — in one place.',

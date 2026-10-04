@@ -17,12 +17,17 @@ const preloadFont = () => ({
 
 // In development, /api and /uploads are proxied to the Express server on port 5000,
 // so the auth cookie works without any cross-site setup.
-export default defineConfig(({ command }) => ({
+export default defineConfig(({ command }) => {
+  // Production builds must always be real production builds. If NODE_ENV=development leaks into the
+  // build environment (e.g. a Vercel env var copied from server/.env), Vite would otherwise ship
+  // development React — ~2x larger, much slower, every effect running twice — and compile JSX for it.
+  // Setting it here (before Vite resolves the config) keeps React and the JSX transform in agreement.
+  if (command === 'build') process.env.NODE_ENV = 'production';
+  return config;
+});
+
+const config = {
   plugins: [react(), preloadFont()],
-  // Production builds must always bundle production React. If NODE_ENV=development leaks into the
-  // build environment (e.g. a Vercel env var copied from server/.env), Vite would otherwise ship the
-  // development build: ~2x larger, much slower, and every effect runs twice (StrictMode).
-  define: command === 'build' ? { 'process.env.NODE_ENV': JSON.stringify('production') } : {},
   server: {
     port: 5173,
     proxy: {
@@ -41,4 +46,4 @@ export default defineConfig(({ command }) => ({
       },
     },
   },
-}));
+};

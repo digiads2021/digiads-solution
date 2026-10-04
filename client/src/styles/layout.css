@@ -9,7 +9,8 @@
 /* ---------- Header ---------- */
 .header { position: sticky; top: 0; z-index: 100; background: rgba(255, 255, 255, 0.97); backdrop-filter: saturate(180%) blur(8px); border-bottom: 1px solid transparent; transition: border-color 0.2s, box-shadow 0.2s; }
 .header--scrolled { border-bottom-color: var(--border); box-shadow: 0 2px 12px rgba(15, 23, 42, 0.04); }
-.header > .container, .mega > .container { max-width: 1440px; }
+.header > .container { max-width: 1440px; }
+.mega > .container { max-width: none; }
 .header__inner { display: flex; align-items: center; gap: var(--sp-5); height: var(--header-h); transition: height 0.2s; }
 .header--scrolled .header__inner { height: 64px; }
 .logo { display: inline-flex; align-items: center; gap: 10px; text-decoration: none !important; flex-shrink: 0; }
@@ -40,6 +41,8 @@
 .nav__trigger[aria-expanded='true'] .nav__chev { transform: rotate(180deg); color: var(--primary); }
 .nav__trigger:focus-visible, .nav__link:focus-visible { outline: none; box-shadow: var(--focus-ring); }
 .header--mega { border-bottom-color: var(--border); }
+/* Invisible bridge over the gap above the floating menu, so moving the pointer down never closes it. */
+.header--mega::after { content: ''; position: absolute; left: 0; right: 0; top: 100%; height: 14px; }
 .header__actions { display: flex; align-items: center; gap: var(--sp-2); flex-shrink: 0; }
 .search-trigger {
   display: inline-flex; align-items: center; gap: var(--sp-2); height: 40px; padding: 0 12px; min-width: 200px;
@@ -47,7 +50,9 @@
 }
 .search-trigger kbd { margin-left: auto; font-family: inherit; font-size: 11px; border: 1px solid var(--border-strong); border-radius: 4px; padding: 0 5px; background: #fff; }
 .header__mobile-btn { display: none; }
-@media (max-width: 1599px) { .search-trigger { min-width: 0; width: 40px; padding: 0; justify-content: center; } .search-trigger span, .search-trigger kbd { display: none; } }
+/* Icon-only on desktop: the full search box does not fit beside the nav at any width (Ctrl/Cmd+K still opens it). */
+.header__actions .search-trigger { min-width: 0; width: 40px; padding: 0; justify-content: center; }
+.header__actions .search-trigger span, .header__actions .search-trigger kbd { display: none; }
 @media (max-width: 1439px) { .nav__trigger, .nav__link { padding: 0 8px; font-size: 0.8125rem; } .header__inner { gap: var(--sp-3); } .nav__item--secondary { display: none; } }
 @media (max-width: 1279px) { .nav__trigger, .nav__link { padding: 0 5px; font-size: 0.78rem; } .nav__chev { width: 14px; height: 14px; } .nav__trigger::after, .nav__link::after { left: 6px; right: 6px; } .logo__sub { display: none; } .header__cta { padding: 0 14px; } .nav__item--tertiary { display: none; } }
 @media (max-width: 1023px) {
@@ -57,12 +62,22 @@
 }
 
 /* ---------- Mega menu ---------- */
+/* Floating card: inset from the viewport edges, rounded, with a layered shadow. */
 .mega {
-  position: absolute; left: 0; right: 0; top: 100%; overflow: hidden;
+  --mega-gap: 10px;
+  position: absolute; top: calc(100% + var(--mega-gap)); overflow: hidden;
+  left: max(16px, calc((100% - 1408px) / 2)); right: max(16px, calc((100% - 1408px) / 2));
+  border-radius: 24px; border: 1px solid rgba(203, 213, 225, 0.7);
   background: linear-gradient(180deg, #ffffff 0%, #f7f9fd 100%);
-  border-top: 1px solid var(--border); box-shadow: 0 24px 48px -12px rgba(11, 31, 75, 0.22);
-  animation: megaIn 0.22s var(--ease);
+  box-shadow:
+    0 1px 2px rgba(11, 31, 75, 0.06),
+    0 8px 20px -6px rgba(11, 31, 75, 0.12),
+    0 32px 64px -16px rgba(11, 31, 75, 0.30),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  transform-origin: top center;
+  animation: megaIn 0.24s var(--ease);
 }
+
 /* Brand gradient hairline along the top edge. */
 .mega::before {
   content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; z-index: 1;
@@ -78,10 +93,10 @@
   -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 35%, #000 100%);
           mask-image: linear-gradient(90deg, transparent 0%, #000 35%, #000 100%);
 }
-@keyframes megaIn { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: none; } }
+@keyframes megaIn { from { opacity: 0; transform: translateY(-8px) scale(0.985); } to { opacity: 1; transform: none; } }
 .mega__inner {
   position: relative; display: grid; grid-template-columns: 270px minmax(0, 1fr) 210px; gap: var(--sp-6);
-  padding: var(--sp-6) var(--sp-5); max-height: calc(100vh - 140px); overflow-y: auto;
+  padding: var(--sp-5); max-height: calc(100vh - 150px); overflow-y: auto;
 }
 
 /* Left rail: dark brand card */

@@ -8,6 +8,7 @@ import { authenticateAdmin, requireRole } from '../middleware/auth.js';
 import { loginLimiter, formLimiter, newsletterLimiter, searchLimiter } from '../middleware/rateLimiters.js';
 import * as v from '../validators/index.js';
 import ApiError from '../utils/ApiError.js';
+import { usesMemoryStorage } from '../services/storage.service.js';
 
 import * as auth from '../controllers/auth.controller.js';
 import * as categories from '../controllers/category.controller.js';
@@ -29,20 +30,25 @@ const superadmin = [authenticateAdmin, requireRole('superadmin')];
 const bustNav = (req, res, next) => { nav.clearNavigationCache(); next(); };
 
 // ---------- Image uploads (admin) ----------
-// Vercel's filesystem is read-only, so keep files in memory there and push them to Vercel Blob.
-const storage = process.env.BLOB_READ_WRITE_TOKEN ? multer.memoryStorage() : multer.diskStorage({
-  destination: 'uploads/',
-  filename: (req, file, cb) => cb(null, `${Date.now()}-${crypto.randomBytes(6).toString('hex')}${path.extname(file.originalname).toLowerCase()}`),
-});
-const imageUpload = multer({
-  storage,
+// Cloud storage (Cloudinary / Vercel Blob) receives the file from memory; local development writes to server/uploads.
+// The choice is made per request so it always reflects the loaded environment variables.
+const uploadOptions = {
   limits: { fileSize: 2 * 1024 * 1024 },
   fileFilter: (req, file, cb) => {
     const okType = ['image/jpeg', 'image/png', 'image/webp'].includes(file.mimetype);
     const okExt = ['.jpg', '.jpeg', '.png', '.webp'].includes(path.extname(file.originalname).toLowerCase());
     cb(okType && okExt ? null : ApiError.badRequest('Only JPG, PNG or WebP images are allowed'), okType && okExt);
   },
+};
+const memoryUpload = multer({ ...uploadOptions, storage: multer.memoryStorage() });
+const diskUpload = multer({
+  ...uploadOptions,
+  storage: multer.diskStorage({
+    destination: 'uploads/',
+    filename: (req, file, cb) => cb(null, `${Date.now()}-${crypto.randomBytes(6).toString('hex')}${path.extname(file.originalname).toLowerCase()}`),
+  }),
 });
+const imageUpload = (field) => (req, res, next) => (usesMemoryStorage() ? memoryUpload : diskUpload).single(field)(req, res, next);
 
 // ---------- Health ----------
 router.get('/health', (req, res) => res.json({ success: true, data: { status: 'ok', time: new Date().toISOString() } }));
@@ -123,6 +129,6 @@ router.delete('/testimonials/:id', admin, testimonials.deleteTestimonial);
 router.get('/settings', settings.getSettings);
 router.put('/settings', ...superadmin, validate(v.settingsSchema), settings.updateSettings);
 router.get('/admin/dashboard', admin, dashboard.getDashboard);
-router.post('/uploads/image', admin, imageUpload.single('image'), upload.uploadImage);
+router.post('/uploads/image', admin, imageUpload('image'), upload.uploadImage);
 
 export default router;

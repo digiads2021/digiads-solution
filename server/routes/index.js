@@ -41,14 +41,18 @@ const uploadOptions = {
   },
 };
 const memoryUpload = multer({ ...uploadOptions, storage: multer.memoryStorage() });
-const diskUpload = multer({
-  ...uploadOptions,
-  storage: multer.diskStorage({
-    destination: 'uploads/',
-    filename: (req, file, cb) => cb(null, `${Date.now()}-${crypto.randomBytes(6).toString('hex')}${path.extname(file.originalname).toLowerCase()}`),
-  }),
-});
-const imageUpload = (field) => (req, res, next) => (usesMemoryStorage() ? memoryUpload : diskUpload).single(field)(req, res, next);
+// Built on first use only: multer creates the destination folder when disk storage is constructed,
+// which crashes on read-only serverless filesystems such as Vercel's.
+let diskUpload;
+const getDiskUpload = () =>
+  (diskUpload ||= multer({
+    ...uploadOptions,
+    storage: multer.diskStorage({
+      destination: 'uploads/',
+      filename: (req, file, cb) => cb(null, `${Date.now()}-${crypto.randomBytes(6).toString('hex')}${path.extname(file.originalname).toLowerCase()}`),
+    }),
+  }));
+const imageUpload = (field) => (req, res, next) => (usesMemoryStorage() ? memoryUpload : getDiskUpload()).single(field)(req, res, next);
 
 // ---------- Health ----------
 router.get('/health', (req, res) => res.json({ success: true, data: { status: 'ok', time: new Date().toISOString() } }));

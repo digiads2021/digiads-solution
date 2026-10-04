@@ -13,10 +13,13 @@ if (missing.length) {
   process.exit(1);
 }
 
-// On Vercel the public site proxies /api to this API, so browsers send the site's origin.
-// Fall back to it when CLIENT_URL / SITE_URL are not set there.
+// On Vercel the site and API are one project (same origin). When CLIENT_URL / SITE_URL are not
+// set, fall back to the project's production domain that Vercel provides automatically.
 const onVercel = Boolean(process.env.VERCEL);
-const defaultClient = onVercel ? 'https://digiads-solution.vercel.app' : 'http://localhost:5173';
+const vercelProd = process.env.VERCEL_PROJECT_PRODUCTION_URL;
+const defaultClient = onVercel
+  ? (vercelProd ? `https://${vercelProd}` : 'https://digiads-solution.vercel.app')
+  : 'http://localhost:5173';
 
 const env = {
   port: Number(process.env.PORT) || 5000,

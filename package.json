@@ -2,7 +2,7 @@
   "name": "digiads-business-solutions",
   "private": true,
   "version": "1.0.0",
-  "description": "DigiAds Business Solutions – MERN stack website (React + Vite, Node + Express, MongoDB)",
+  "description": "DigiAds Business Solutions \u2013 MERN stack website (React + Vite, Node + Express, MongoDB)",
   "scripts": {
     "install-all": "npm install && npm install --prefix server && npm install --prefix client",
     "seed": "npm run seed --prefix server",
@@ -12,5 +12,9 @@
   },
   "devDependencies": {
     "concurrently": "^9.1.2"
+  },
+  "type": "module",
+  "engines": {
+    "node": ">=20"
   }
 }

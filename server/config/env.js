@@ -13,15 +13,20 @@ if (missing.length) {
   process.exit(1);
 }
 
+// On Vercel the public site proxies /api to this API, so browsers send the site's origin.
+// Fall back to it when CLIENT_URL / SITE_URL are not set there.
+const onVercel = Boolean(process.env.VERCEL);
+const defaultClient = onVercel ? 'https://digiads-solution.vercel.app' : 'http://localhost:5173';
+
 const env = {
   port: Number(process.env.PORT) || 5000,
   nodeEnv: process.env.NODE_ENV || 'development',
-  isProd: process.env.NODE_ENV === 'production',
+  isProd: process.env.NODE_ENV === 'production' || onVercel,
   mongoUri: process.env.MONGODB_URI,
   jwtSecret: process.env.JWT_SECRET,
   jwtExpiresIn: process.env.JWT_EXPIRES_IN || '8h',
-  clientUrls: (process.env.CLIENT_URL || 'http://localhost:5173').split(',').map((u) => u.trim()).filter(Boolean),
-  siteUrl: (process.env.SITE_URL || process.env.CLIENT_URL || 'http://localhost:5173').split(',')[0].trim(),
+  clientUrls: (process.env.CLIENT_URL || process.env.SITE_URL || defaultClient).split(',').map((u) => u.trim()).filter(Boolean),
+  siteUrl: (process.env.SITE_URL || process.env.CLIENT_URL || defaultClient).split(',')[0].trim().replace(/\/$/, ''),
   cookieSameSite: process.env.COOKIE_SAMESITE || 'lax',
   cookieDomain: process.env.COOKIE_DOMAIN || undefined,
   smtp: {

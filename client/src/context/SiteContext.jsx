@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useState } from 'react';
+import { createContext, useCallback, useContext, useEffect, useState } from 'react';
 import { getNavigation, getSettings } from '../api/index.js';
 
 // Loads the mega-menu navigation and public site settings once for the whole app.
@@ -13,22 +13,25 @@ const SiteContext = createContext({ navigation: [], settings: null, loading: tru
 
 export function SiteProvider({ children }) {
   const [state, setState] = useState({ navigation: [], settings: null, loading: true, error: null });
+  const [attempt, setAttempt] = useState(0);
+  const reload = useCallback(() => { setState((s) => ({ ...s, loading: true })); setAttempt((n) => n + 1); }, []);
 
   useEffect(() => {
     let active = true;
     Promise.allSettled([getNavigation(), getSettings()]).then(([nav, settings]) => {
       if (!active) return;
+      const navOk = nav.status === 'fulfilled' && nav.value?.length > 0;
       setState({
-        navigation: nav.status === 'fulfilled' && nav.value?.length ? nav.value : FALLBACK_NAV,
+        navigation: navOk ? nav.value : FALLBACK_NAV,
         settings: settings.status === 'fulfilled' ? settings.value : null,
         loading: false,
-        error: nav.status === 'rejected' ? nav.reason?.message : null,
+        error: navOk ? null : (nav.reason?.message || 'Services are temporarily unavailable.'),
       });
     });
     return () => { active = false; };
-  }, []);
+  }, [attempt]);
 
-  return <SiteContext.Provider value={state}>{children}</SiteContext.Provider>;
+  return <SiteContext.Provider value={{ ...state, reload }}>{children}</SiteContext.Provider>;
 }
 
 export const useSite = () => useContext(SiteContext);

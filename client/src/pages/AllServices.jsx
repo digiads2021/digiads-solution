@@ -5,12 +5,12 @@ import Seo from '../components/shared/Seo.jsx';
 import Breadcrumbs from '../components/layout/Breadcrumbs.jsx';
 import CTABanner from '../components/shared/CTABanner.jsx';
 import { useSite } from '../context/SiteContext.jsx';
-import { CardSkeletons, EmptyState } from '../components/ui/States.jsx';
+import { CardSkeletons, EmptyState, ErrorState } from '../components/ui/States.jsx';
 import Icon from '../utils/icons.jsx';
 
 // All services, grouped by navigation pillar, with pillar chips and an instant filter.
 export default function AllServices() {
-  const { navigation, loading } = useSite();
+  const { navigation, loading, error, reload } = useSite();
   const [params, setParams] = useSearchParams();
   const pillar = params.get('pillar') || 'all';
   const [q, setQ] = useState(params.get('q') || '');
@@ -58,7 +58,8 @@ export default function AllServices() {
             </div>
           </div>
           {loading && <CardSkeletons count={6} />}
-          {!loading && !filtered.length && <EmptyState title="No services match your filter" text="Try a different word, or talk to an expert." />}
+          {!loading && error && <ErrorState message="We couldn’t load the service list right now. Please try again in a moment." onRetry={reload} />}
+          {!loading && !error && !filtered.length && <EmptyState title="No services match your filter" text="Try a different word, or talk to an expert." />}
           {filtered.map((p) => (
             <div key={p.key} className="svc-group">
               <div className="svc-group__head">

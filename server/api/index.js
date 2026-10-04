@@ -8,11 +8,13 @@ const loadApp = () =>
     throw err;
   }));
 
-const fail = (res, message) => {
+// reason is a short code ("configuration" or "database") that helps the site owner diagnose
+// an outage from /api/health without revealing which settings or hosts are involved.
+const fail = (res, reason) => {
   res.statusCode = 503;
   res.setHeader('Content-Type', 'application/json');
   res.setHeader('Cache-Control', 'no-store');
-  res.end(JSON.stringify({ success: false, message }));
+  res.end(JSON.stringify({ success: false, message: 'Service temporarily unavailable. Please try again shortly.', reason }));
 };
 
 export default async function handler(req, res) {
@@ -24,13 +26,13 @@ export default async function handler(req, res) {
   } catch (err) {
     // Details (e.g. which env vars are missing) go to the Vercel logs only — never to visitors.
     console.error('Startup failed:', err.message);
-    return fail(res, 'Service temporarily unavailable. Please try again shortly.');
+    return fail(res, 'configuration');
   }
   try {
     await connectDB();
   } catch (err) {
     console.error('MongoDB connection failed:', err.message);
-    return fail(res, 'Service temporarily unavailable. Please try again shortly.');
+    return fail(res, 'database');
   }
   return app(req, res);
 }

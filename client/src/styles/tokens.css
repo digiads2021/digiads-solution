@@ -1,0 +1,53 @@
+/* DigiAds design tokens — change brand colours here only. */
+:root {
+  --primary: #1a47b8;
+  --primary-hover: #153b9a;
+  --primary-dark: #0b1f4b;
+  --primary-darker: #071535;
+  --primary-light: #eaf0fd;
+  --accent: #12a39a;          /* decorative only */
+  --accent-strong: #0b7a73;   /* teal for text/icons (passes 4.5:1) */
+  --accent-light: #e3f6f4;
+
+  --background: #f6f8fb;
+  --surface: #ffffff;
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+  --text-muted: #5f6b7f;
+  --border: #e2e8f0;
+  --border-strong: #cbd5e1;
+
+  --success: #15803d;
+  --success-light: #e8f6ee;
+  --warning: #b45309;
+  --warning-light: #fdf3e5;
+  --error: #b91c1c;
+  --error-light: #fdecec;
+
+  --font: 'Plus Jakarta Sans', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --fs-xs: 0.75rem;
+  --fs-sm: 0.875rem;
+  --fs-base: 1rem;
+  --fs-md: 1.125rem;
+  --fs-lg: 1.25rem;
+  --fs-xl: 1.5rem;
+  --fs-h3: 1.25rem;
+  --fs-h2: clamp(1.75rem, 1.4rem + 1.4vw, 2.25rem);
+  --fs-h1: clamp(2.1rem, 1.5rem + 2.6vw, 3.5rem);
+
+  --sp-1: 4px; --sp-2: 8px; --sp-3: 12px; --sp-4: 16px; --sp-5: 24px;
+  --sp-6: 32px; --sp-7: 48px; --sp-8: 64px; --sp-9: 96px;
+
+  --radius-sm: 6px;
+  --radius: 10px;
+  --radius-lg: 16px;
+  --radius-pill: 999px;
+
+  --shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.04), 0 4px 12px rgba(15, 23, 42, 0.06);
+  --shadow-lg: 0 12px 40px rgba(11, 31, 75, 0.14);
+  --focus-ring: 0 0 0 3px rgba(26, 71, 184, 0.35);
+
+  --container: 1240px;
+  --header-h: 72px;
+  --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+}

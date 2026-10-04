@@ -1,0 +1,76 @@
+import { Link } from 'react-router-dom';
+import { Phone, Mail, MapPin } from 'lucide-react';
+import Logo from './Logo.jsx';
+import NewsletterForm from '../forms/NewsletterForm.jsx';
+import { useSite } from '../../context/SiteContext.jsx';
+import { PLACEHOLDER } from '../../utils/siteContent.js';
+
+export default function Footer() {
+  const { navigation, settings } = useSite();
+  const c = settings?.contact || {};
+  const year = new Date().getFullYear();
+  // Footer service columns come from the navigation API (no hard-coded lists).
+  const pillarsToShow = navigation.slice(0, 3);
+  const morePillars = navigation.slice(3);
+
+  return (
+    <footer className="footer">
+      <div className="footer__news">
+        <div className="container">
+          <div>
+            <h2>Stay updated on compliance and business tips</h2>
+            <p>Occasional emails on deadlines, new rules and guides. Unsubscribe anytime.</p>
+          </div>
+          <NewsletterForm />
+        </div>
+      </div>
+      <div className="container">
+        <div className="footer__main">
+          <div className="footer__brand">
+            <Logo />
+            <p>{settings?.tagline || 'Start. Comply. Protect. Build. Go Global.'} Registration, compliance, legal, technology and UAE business services under one roof.</p>
+            <ul className="footer__contact">
+              <li><Phone size={16} aria-hidden="true" /> {c.phone ? <a href={`tel:${c.phone}`}>{c.phone}</a> : PLACEHOLDER.phone}</li>
+              <li><Mail size={16} aria-hidden="true" /> {c.email ? <a href={`mailto:${c.email}`}>{c.email}</a> : PLACEHOLDER.email}</li>
+              <li><MapPin size={16} aria-hidden="true" /> {c.addressIndia || PLACEHOLDER.address}</li>
+            </ul>
+          </div>
+          {pillarsToShow.map((p) => (
+            <div key={p.key}>
+              <h3>{p.name}</h3>
+              <ul>
+                {p.columns.flatMap((col) => col.links.filter((l) => l.popular).slice(0, 2)).slice(0, 6).map((l) => (
+                  <li key={l.url}><Link to={l.url}>{l.name.replace(' Registration', '')}</Link></li>
+                ))}
+                <li><Link to={`/services?pillar=${p.key}`}>View all →</Link></li>
+              </ul>
+            </div>
+          ))}
+          <div>
+            <h3>Company</h3>
+            <ul>
+              <li><Link to="/about">About DigiAds</Link></li>
+              <li><Link to="/services">All Services</Link></li>
+              {morePillars.map((p) => <li key={p.key}><Link to={`/services?pillar=${p.key}`}>{p.name}</Link></li>)}
+              <li><Link to="/blog">Blog</Link></li>
+              <li><Link to="/faq">FAQ</Link></li>
+              <li><Link to="/contact">Contact</Link></li>
+            </ul>
+          </div>
+        </div>
+        <p className="footer__disclaimer">
+          DigiAds Business Solutions is a private professional services provider and is not a government body. Government fees, processing times and approvals are decided by the respective authorities.
+        </p>
+        <div className="footer__bottom">
+          <span>© {year} DigiAds Business Solutions. All rights reserved.</span>
+          <ul>
+            <li><Link to="/privacy-policy">Privacy Policy</Link></li>
+            <li><Link to="/terms">Terms</Link></li>
+            <li><Link to="/refund-policy">Refund Policy</Link></li>
+            <li><Link to="/disclaimer">Disclaimer</Link></li>
+          </ul>
+        </div>
+      </div>
+    </footer>
+  );
+}

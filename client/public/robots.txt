@@ -1,6 +1,0 @@
-User-agent: *
-Allow: /
-Disallow: /admin
-
-# Replace with your live domain before deployment
-Sitemap: https://digiadssolution.in/sitemap.xml

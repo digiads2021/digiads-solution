@@ -40,6 +40,8 @@ ul, ol { margin: 0; padding: 0; }
   font-size: var(--fs-xs); font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
   color: var(--accent-strong); margin-bottom: var(--sp-3);
 }
+.eyebrow::before { content: ''; width: 18px; height: 2px; border-radius: 2px; background: linear-gradient(90deg, var(--primary), var(--accent)); }
+.section--dark .eyebrow::before, .hero .eyebrow::before, .consult .eyebrow::before { background: linear-gradient(90deg, #6ea8ff, #7fe0d8); }
 .section--dark .eyebrow { color: #7fe0d8; }
 .lead { font-size: var(--fs-md); color: var(--text-secondary); max-width: 680px; }
 .section--dark .lead { color: #c9d4ee; }

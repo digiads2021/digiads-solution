@@ -1,6 +1,7 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Seo from '../components/shared/Seo.jsx';
 import Hero from '../components/home/Hero.jsx';
+import ConnectedServices from '../components/home/ConnectedServices.jsx';
 import SearchModal from '../components/layout/SearchModal.jsx';
 import {
   QuickActions, PillarStrip, WhyDigiAds, CategoryGrid, PopularServices, IntentTiles, BusinessJourney,
@@ -12,6 +13,19 @@ import { getCategories, getServices, getFaqs, getBlogs, getTestimonials } from '
 import { useConsultation } from '../components/forms/ConsultationProvider.jsx';
 import { useSite } from '../context/SiteContext.jsx';
 import { organizationSchema, websiteSchema, faqSchema } from '../utils/schema.js';
+
+// Fades each section in as it scrolls into view. Without IntersectionObserver nothing is hidden.
+function useScrollReveal(deps) {
+  useEffect(() => {
+    if (!('IntersectionObserver' in window) || window.matchMedia?.('(prefers-reduced-motion: reduce)').matches) return undefined;
+    const els = [...document.querySelectorAll('.home > .section:not(.fx-in)')];
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('fx-in'); io.unobserve(e.target); } });
+    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.05 });
+    els.forEach((el) => { el.classList.add('fx'); io.observe(el); });
+    return () => io.disconnect();
+  }, deps); // eslint-disable-line react-hooks/exhaustive-deps
+}
 
 export default function Home() {
   const [searchOpen, setSearchOpen] = useState(false);
@@ -25,9 +39,10 @@ export default function Home() {
   const blogs = useFetch(() => getBlogs({ limit: 3 }), [], { cacheKey: 'home-blogs' });
   const testimonials = useFetch(() => getTestimonials({ featured: true }), [], { cacheKey: 'home-testimonials' });
   const homeFaqs = (faqs.data || []).slice(0, 6);
+  useScrollReveal([testimonials.data, blogs.data]);
 
   return (
-    <>
+    <div className="home">
       <Seo
         title="DigiAds Business Solutions – Registration, Compliance, Legal, Technology & UAE Setup"
         path="/"
@@ -35,6 +50,7 @@ export default function Home() {
       />
       <Hero onSearch={() => setSearchOpen(true)} />
       <QuickActions />
+      <ConnectedServices />
       <PillarStrip />
       <WhyDigiAds />
       <CategoryGrid categories={categories.data} loading={categories.loading} error={categories.error} onRetry={categories.reload} />
@@ -49,6 +65,6 @@ export default function Home() {
       <FaqAndArticles faqs={homeFaqs} posts={blogs.data?.data} />
       <SearchModal open={searchOpen} onClose={() => setSearchOpen(false)} onTalk={() => openConsultation()} />
       <MobileStickyCTA />
-    </>
+    </div>
   );
 }

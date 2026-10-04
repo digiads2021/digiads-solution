@@ -15,7 +15,7 @@ import { notFound, errorHandler } from './middleware/errorHandler.js';
 
 const app = express();
 
-app.set('trust proxy', 1); // correct client IPs behind Render/Railway/Nginx (needed for rate limiting)
+app.set('trust proxy', 1); // correct client IPs behind Vercel/Render/Nginx (needed for rate limiting)
 app.disable('x-powered-by');
 
 // Security headers. crossOriginResourcePolicy lets the frontend show uploaded images.
@@ -39,8 +39,14 @@ app.use('/api', (req, res, next) => {
 });
 
 app.use('/api', globalLimiter, apiRoutes);
-app.use('/uploads', express.static('uploads', { maxAge: '7d' }));
+// Local-disk uploads exist only in development; production images live in Cloudinary / Vercel Blob.
+if (!process.env.VERCEL) app.use('/uploads', express.static('uploads', { maxAge: '7d' }));
 app.get('/sitemap.xml', sitemap);
+app.get('/robots.txt', (req, res) => {
+  const base = env.siteUrl.replace(/\/$/, '');
+  res.type('text/plain').set('Cache-Control', 'public, max-age=3600');
+  res.send(`User-agent: *\nAllow: /\nDisallow: /admin\nDisallow: /api/\n\nSitemap: ${base}/sitemap.xml\n`);
+});
 app.get('/', (req, res) => res.json({ success: true, data: { name: 'DigiAds API', health: '/api/health' } }));
 
 app.use(notFound);

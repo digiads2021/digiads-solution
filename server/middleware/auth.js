@@ -8,7 +8,7 @@ export const COOKIE_NAME = 'digiads_token';
 
 export const cookieOptions = () => ({
   httpOnly: true, // JavaScript in the browser cannot read it
-  secure: env.isProd, // HTTPS only in production
+  secure: env.isProd || env.cookieSameSite === 'none', // HTTPS only in production (browsers require it for SameSite=None)
   sameSite: env.cookieSameSite,
   domain: env.cookieDomain,
   path: '/',

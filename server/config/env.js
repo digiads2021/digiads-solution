@@ -5,7 +5,10 @@ dotenv.config();
 const required = ['MONGODB_URI', 'JWT_SECRET'];
 const missing = required.filter((key) => !process.env[key]);
 if (missing.length) {
-  console.error(`Missing required environment variables: ${missing.join(', ')}`);
+  const message = `Missing required environment variables: ${missing.join(', ')}`;
+  // On Vercel, throw so the request handler can return a clear 503 instead of crashing the function.
+  if (process.env.VERCEL) throw new Error(message);
+  console.error(message);
   console.error('Copy server/.env.example to server/.env and fill in the values.');
   process.exit(1);
 }

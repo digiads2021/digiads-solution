@@ -800,11 +800,11 @@ const templates = {
   }),
 
   uae: (s) => ({
-    highlights: ['Activity and jurisdiction guidance', 'Licence application and approvals', 'Visa and office coordination', 'Support for Indian founders'],
+    highlights: ['Activity and jurisdiction guidance', 'Licence application and approvals', 'Corporate bank account guidance', 'Support for Indian founders'],
     overview: p(
       `${s.desc}`,
       'The UAE offers three main routes for setting up a business: mainland companies licensed by the emirate’s economic department, free zone companies licensed by a free zone authority, and offshore companies used mainly for holding and international business. Each route differs in where you can trade, ownership rules for certain activities, office requirements and visa eligibility.',
-      'DigiAds helps you choose the right activity and jurisdiction, prepares the documents and coordinates licensing, visas and office solutions.'
+      'DigiAds helps you choose the right activity and jurisdiction, prepares the documents and coordinates licensing and approvals.'
     ),
     eligibility: ['Indian and international entrepreneurs expanding to the UAE', 'Existing companies opening a UAE presence', 'Freelancers, consultants, traders and service providers'],
     requirements: ['Selected business activity', 'Chosen jurisdiction (mainland, free zone or offshore)', 'Passport copies and photographs of shareholders and managers', 'Office solution as required by the licence'],
@@ -814,7 +814,7 @@ const templates = {
       t('Residence visas', 'Licences can make owners and staff eligible for visas.'),
       t('Global hub', 'Strategic location for trade with Asia, Africa and Europe.'),
       t('Banking and credibility', 'A UAE entity can open corporate bank accounts (subject to bank approval).'),
-      t('One coordinator', 'Licence, visas and office handled together.'),
+      t('One coordinator', 'Licence, approvals and documents handled together.'),
     ],
     comparisonTable: {
       columns: ['Route', 'Best for', 'Typical notes'],
@@ -830,12 +830,11 @@ const templates = {
       t('Name and initial approval', 'Trade name reservation and initial approval.'),
       t('Documents', 'Preparation and, where needed, attestation of documents.'),
       t('Licence issuance', 'Application filed and licence issued.'),
-      t('Visas and office', 'Establishment card, visas and office solution arranged.'),
       t('Banking support', 'Guidance on opening a corporate bank account.'),
     ],
-    deliverables: ['Trade licence', 'Company documents (MoA/registration certificate as applicable)', 'Coordination of visas and office solution'],
-    afterService: ['Apply for investor and employee visas', 'Set up a virtual office or flexi desk', 'PRO services for approvals and renewals', 'Keep your Indian compliance up to date'],
-    pitfalls: ['Choosing an activity that does not match your actual business', 'Picking a jurisdiction that restricts where you can trade', 'Not planning for licence renewal and visa costs'],
+    deliverables: ['Trade licence', 'Company documents (MoA/registration certificate as applicable)'],
+    afterService: ['PRO services for approvals and renewals', 'Corporate bank account guidance', 'Keep your Indian compliance up to date'],
+    pitfalls: ['Choosing an activity that does not match your actual business', 'Picking a jurisdiction that restricts where you can trade', 'Not planning for licence renewal costs'],
     faqs: [
       ['Can an Indian citizen own a company in the UAE?', 'Yes. Foreign nationals, including Indians, can own companies in UAE free zones and, for many activities, on the mainland.'],
       ['Mainland or free zone — which is better?', 'Mainland companies can trade directly across the UAE. Free zone companies are suited to international business and services. We recommend based on your activity and customers.'],
@@ -843,7 +842,7 @@ const templates = {
       ['Can my UAE company sponsor visas?', 'Mainland and free zone companies can usually sponsor visas based on their licence and office. Offshore companies generally cannot.'],
       ['Which emirates and free zones do you cover?', s.jurisdictions?.length ? `We support setup in ${s.jurisdictions.join(', ')}.` : 'We cover mainland, free zone and offshore setups across major emirates. Talk to an expert for options.'],
     ],
-    related: ['uae-free-zone-company-formation', 'uae-mainland-company-formation', 'investor-visa', 'virtual-office', 'pro-government-services', 'commercial-trade-license'],
+    related: ['uae-free-zone-company-formation', 'uae-mainland-company-formation', 'pro-government-services', 'commercial-trade-license'],
   }),
 
   uaeLicence: (s) => ({
@@ -865,26 +864,25 @@ const templates = {
     process: [
       t('Activity selection', 'We match your business with the correct activities.'),
       t('Name reservation and initial approval', 'Trade name and initial approval obtained.'),
-      t('Office solution', 'Office or flexi desk arranged as required.'),
       t('Licence issuance', 'Application submitted and licence issued.'),
       t('Renewals', 'Reminders before annual renewal.'),
     ],
     deliverables: ['Trade licence', 'Approvals as applicable', 'Renewal reminders'],
-    afterService: ['Visa applications', 'PRO services', 'Corporate bank account guidance'],
+    afterService: ['PRO services', 'Corporate bank account guidance'],
     pitfalls: ['Selecting the wrong activity group', 'Missing approvals for regulated activities', 'Late renewal'],
     faqs: [
       ['Can one licence cover multiple activities?', 'Often yes, within permitted combinations. We check which activities can be combined.'],
       ['Is the licence renewed every year?', 'UAE trade licences are generally renewed annually.'],
       ['Do I need an office?', 'Most licences require an office solution, which can range from a flexi desk to a full office depending on jurisdiction.'],
     ],
-    related: ['uae-company-formation', 'pro-government-services', 'investor-visa', 'flexi-desk'],
+    related: ['uae-company-formation', 'pro-government-services', 'commercial-trade-license'],
   }),
 
   pro: (s) => ({
-    highlights: ['Government approvals', 'Licence and visa renewals', 'Document processing and attestation', 'Single point of contact'],
+    highlights: ['Government approvals', 'Licence renewals', 'Document processing and attestation', 'Single point of contact'],
     overview: p(
       `${s.desc}`,
-      'Running a company in the UAE involves regular interaction with government departments — approvals, renewals, labour and immigration formalities and document processing. A PRO (Public Relations Officer) handles these on your behalf so you can focus on your business.',
+      'Running a company in the UAE involves regular interaction with government departments — approvals, renewals and document processing. A PRO (Public Relations Officer) handles these on your behalf so you can focus on your business.',
       'DigiAds provides PRO support for approvals, renewals and documentation.'
     ),
     eligibility: ['UAE mainland and free zone companies', 'Entrepreneurs setting up in the UAE'],
@@ -903,81 +901,14 @@ const templates = {
       t('Completion', 'You receive the approval or renewed document.'),
     ],
     deliverables: ['Completed approval, renewal or processed document'],
-    afterService: ['Visa services', 'Licence renewal reminders'],
+    afterService: ['Licence renewal reminders'],
     pitfalls: ['Missing renewal dates', 'Incomplete documents'],
     faqs: [
-      ['What does a PRO do?', 'A PRO handles government formalities such as approvals, renewals, labour and immigration paperwork and document processing.'],
+      ['What does a PRO do?', 'A PRO handles government formalities such as approvals, renewals and document processing.'],
       ['Do you handle document attestation?', 'Yes, we assist with documentation and attestation requirements.'],
       ['Can you manage renewals for me?', 'Yes, we track due dates and handle renewals.'],
     ],
-    related: ['uae-company-formation', 'employment-visa', 'investor-visa', 'commercial-trade-license'],
-  }),
-
-  visa: (s) => ({
-    highlights: ['Eligibility check', 'Application preparation', 'Medical and biometrics coordination', 'Emirates ID guidance'],
-    overview: p(
-      `${s.desc}`,
-      'UAE residence visas are issued based on eligibility criteria set by the authorities, such as ownership of a company, employment, family sponsorship or, for long-term visas, investment, talent or professional criteria. The process typically involves entry permit, medical fitness test, biometrics and Emirates ID.',
-      'DigiAds checks eligibility, prepares the application and coordinates each step.'
-    ),
-    eligibility: ['Owners and investors of UAE companies', 'Employees of UAE companies', 'UAE residents sponsoring family members', 'Applicants meeting long-term visa criteria'],
-    requirements: ['Passport copy (valid as required)', 'Photographs', 'Sponsor documents (licence, employment or residency as applicable)', 'Supporting documents specific to the visa type'],
-    benefits: [
-      t('Live and work in the UAE', 'Legal residence for you, your staff or family.'),
-      t('Banking and services', 'Residence enables bank accounts, leases and utilities.'),
-      t('Guided process', 'Each step coordinated for you.'),
-      t('Avoid delays', 'Correct documents reduce rejections and rework.'),
-    ],
-    documentGroups: [{ title: 'Documents', items: ['Passport copy and photograph', 'Company licence (for investor / employment visas)', 'Proof of relationship, attested as required (family visa)', 'Salary or income proof (family visa)', 'Supporting documents for long-term visa eligibility (golden visa)'] }],
-    process: [
-      t('Eligibility check', 'We confirm the visa type and requirements.'),
-      t('Documents', 'We collect and review documents.'),
-      t('Entry permit / application', 'Application submitted to the authority.'),
-      t('Medical and biometrics', 'Medical test and biometrics scheduled.'),
-      t('Visa and Emirates ID', 'Residence visa stamped or issued and Emirates ID processed.'),
-    ],
-    deliverables: ['Residence visa (as approved by the authority)', 'Emirates ID application support'],
-    afterService: ['Visa renewal reminders', 'PRO services'],
-    pitfalls: ['Passport validity too short', 'Unattested documents', 'Missing medical or biometrics appointments'],
-    faqs: [
-      [`Who is eligible for the ${s.short}?`, 'Eligibility depends on the criteria set by UAE authorities for this visa category. We check your case before applying.'],
-      ['Is approval guaranteed?', 'No. Visa decisions are made by the UAE authorities. We help you submit a complete and correct application.'],
-      ['Do I need to be in the UAE?', 'Some steps, such as medical tests and biometrics, require presence in the UAE.'],
-    ],
-    related: ['uae-company-formation', 'golden-visa', 'pro-government-services', 'virtual-office'],
-  }),
-
-  office: (s) => ({
-    highlights: ['Suitable for licence requirements', 'Flexible terms', 'Business address in the UAE', 'Coordinated with your setup'],
-    overview: p(
-      `${s.desc}`,
-      'Most UAE licences need an office solution, and the right choice depends on your jurisdiction, activity and visa needs. Options range from virtual offices and flexi desks to serviced offices in business centres.',
-      'DigiAds helps you choose an office solution that meets your licence requirements and budget.'
-    ),
-    eligibility: ['New UAE companies', 'Existing companies changing or upgrading their office'],
-    requirements: ['Licence jurisdiction and activity', 'Number of visas planned', 'Preferred location'],
-    benefits: [
-      t('Meets licence needs', 'An office solution accepted for your licence.'),
-      t('Cost-effective', 'Pay only for the space you need.'),
-      t('Professional address', 'A UAE business address for your company.'),
-      t('Scale up easily', 'Move to larger space as you grow.'),
-    ],
-    documentGroups: [{ title: 'Documents', items: ['Trade licence or initial approval', 'Passport copies of shareholders / manager'] }],
-    process: [
-      t('Requirement', 'We understand your licence, visas and location needs.'),
-      t('Options', 'We share suitable options.'),
-      t('Agreement', 'Office agreement / tenancy arranged.'),
-      t('Licence linkage', 'Office details used for licence and visa processes.'),
-    ],
-    deliverables: ['Office agreement / tenancy documents', 'Business address details'],
-    afterService: ['Licence and visa processing', 'PRO services'],
-    pitfalls: ['Choosing an option that does not support the number of visas you need', 'Not checking whether the address is accepted for your licence'],
-    faqs: [
-      ['What is the difference between a virtual office and a flexi desk?', 'A virtual office provides a business address and services without a dedicated workspace. A flexi desk gives shared desk access and may meet licence requirements for some jurisdictions.'],
-      ['Does an office affect visa eligibility?', 'Yes. Visa quotas can depend on office type and size. We advise you based on your plans.'],
-      ['Can I upgrade later?', 'Yes, you can move to a larger office as your business grows.'],
-    ],
-    related: ['uae-company-formation', 'uae-free-zone-company-formation', 'investor-visa', 'pro-government-services'],
+    related: ['uae-company-formation', 'uae-free-zone-company-formation', 'commercial-trade-license'],
   }),
 };
 

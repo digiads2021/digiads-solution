@@ -13,7 +13,7 @@ export const pillarWords = [
   { word: 'Comply', text: 'GST, income tax, MCA filings and payroll.' },
   { word: 'Protect', text: 'Trademarks, agreements and legal notices.' },
   { word: 'Build', text: 'Websites, web apps and mobile apps.' },
-  { word: 'Go Global', text: 'UAE company formation, licences and visas.' },
+  { word: 'Go Global', text: 'UAE company formation, licences and PRO services.' },
 ];
 
 export const values = [
@@ -41,7 +41,7 @@ export const journey = [
   { key: 'protect', label: 'Protect', icon: 'ShieldCheck', title: 'Protect what you build', text: 'Trademarks, agreements and legal notices that keep your business safe.' },
   { key: 'build', label: 'Build', icon: 'MonitorSmartphone', title: 'Build digitally', text: 'Websites, web applications, mobile apps and integrations.' },
   { key: 'grow', label: 'Grow', icon: 'Rocket', title: 'Grow with recognition', text: 'Startup India, Udyam, FSSAI, IEC and ISO certifications.' },
-  { key: 'expand', label: 'Expand', icon: 'Globe2', title: 'Expand beyond borders', text: 'UAE company formation, trade licences, visas and office solutions.' },
+  { key: 'expand', label: 'Expand', icon: 'Globe2', title: 'Expand beyond borders', text: 'UAE company formation, trade licences and PRO services.' },
 ];
 
 export const howItWorks = [

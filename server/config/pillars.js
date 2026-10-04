@@ -5,7 +5,7 @@ const pillars = [
   { key: 'legal-ip', name: 'Legal & IP', icon: 'Scale', description: 'Protect your brand and put agreements in writing.' },
   { key: 'licences-iso', name: 'Licences & ISO', icon: 'BadgeCheck', description: 'FSSAI, import/export and ISO certifications.' },
   { key: 'technology', name: 'Technology', icon: 'MonitorSmartphone', description: 'Websites, web applications, mobile apps and integrations.' },
-  { key: 'global', name: 'Global', icon: 'Globe2', description: 'UAE company formation, trade licences, visas and offices.' },
+  { key: 'global', name: 'Global', icon: 'Globe2', description: 'UAE company formation, trade licences and PRO services.' },
 ];
 
 export const pillarKeys = pillars.map((p) => p.key);

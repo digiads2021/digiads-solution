@@ -203,13 +203,13 @@ export function GlobalSection() {
     { title: 'UAE Offshore', slug: 'uae-offshore-company-formation', text: 'For holding and international business.', places: ['Dubai', 'Jebel Ali', 'RAK', 'Ajman'] },
   ];
   const extra = [
-    ['Trade Licences', 'commercial-trade-license'], ['Branch Office', 'branch-office-establishment'], ['Golden Visa', 'golden-visa'],
-    ['Investor Visa', 'investor-visa'], ['PRO Services', 'pro-government-services'], ['Virtual Office', 'virtual-office'],
+    ['Trade Licences', 'commercial-trade-license'], ['Professional Licence', 'professional-trade-license'], ['Industrial Licence', 'industrial-trade-license'],
+    ['Branch Office', 'branch-office-establishment'], ['PRO Services', 'pro-government-services'], ['Business Setup Consultation', 'business-setup-activity-consultation'],
   ];
   return (
     <section className="section" aria-labelledby="global-title">
       <div className="container">
-        <SectionHead id="global-title" eyebrow="Global business" title="Take your business beyond borders" lead="Company formation, trade licences, visas and office solutions in the UAE." action={<Link to="/services/global-business" className="btn btn--primary">Explore Global Business</Link>} />
+        <SectionHead id="global-title" eyebrow="Global business" title="Take your business beyond borders" lead="Company formation, trade licences and PRO services in the UAE." action={<Link to="/services/global-business" className="btn btn--primary">Explore Global Business</Link>} />
         <div className="grid grid-3">
           {cards.map((c) => (
             <Link key={c.slug} to={`/services/global-business/${c.slug}`} className="card card--hover global-card" style={{ color: 'inherit', textDecoration: 'none' }}>

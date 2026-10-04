@@ -303,23 +303,6 @@ const catalogue = [
       ['PRO & Government Services', 'pro-government-services', 'Government approvals, renewals and documentation handled by a PRO in the UAE.', { kw: ['pro services', 'approvals', 'renewals', 'documentation', 'attestation'] }],
     ],
   },
-  {
-    category: 'global-business', subcategory: 'Visa & Immigration', pillar: 'global', group: 'visa', lifecycle: 'expand', icon: 'Plane',
-    services: [
-      ['Investor Visa', 'investor-visa', 'UAE residence visa for company owners and investors.', { kw: ['partner visa', 'investor residence'] }],
-      ['Employment Visa', 'employment-visa', 'UAE employment visas for staff of your company.', { kw: ['work visa', 'labour card'] }],
-      ['Family Visa', 'family-visa', 'Sponsor residence visas for your spouse, children or parents in the UAE.', { kw: ['dependent visa', 'family sponsorship'] }],
-      ['Golden Visa', 'golden-visa', 'Long-term UAE residence for eligible investors, entrepreneurs and professionals.', { kw: ['golden visa', '10 year visa', 'long term visa'] }],
-    ],
-  },
-  {
-    category: 'global-business', subcategory: 'Office Solutions', pillar: 'global', group: 'office', lifecycle: 'expand', icon: 'Building',
-    services: [
-      ['Virtual Office', 'virtual-office', 'A business address and mail handling in the UAE without renting a full office.', { kw: ['virtual address', 'business address'] }],
-      ['Flexi Desk', 'flexi-desk', 'A flexible desk that meets licence requirements at a lower cost than an office.', { kw: ['flexi desk', 'coworking'] }],
-      ['Business Centre', 'business-centre', 'Serviced office space in a business centre for your UAE company.', { kw: ['serviced office', 'business center'] }],
-    ],
-  },
 ];
 
 export default catalogue;

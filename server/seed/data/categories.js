@@ -152,12 +152,12 @@ const categories = [
     slug: 'global-business',
     icon: 'Globe2',
     order: 10,
-    shortDescription: 'UAE mainland, free zone and offshore company formation, trade licences, visas and offices.',
+    shortDescription: 'UAE mainland, free zone and offshore company formation, trade licences and PRO services.',
     overview:
-      'Expand to the UAE with support for mainland, free zone and offshore company formation, the right trade licence for your activity, PRO and government services, residence visas and flexible office solutions. DigiAds guides you through activity selection, jurisdiction choice and documentation.',
+      'Expand to the UAE with support for mainland, free zone and offshore company formation, the right trade licence for your activity, and PRO and government services. DigiAds guides you through activity selection, jurisdiction choice and documentation.',
     benefits: [
       { title: 'Right jurisdiction', description: 'Compare mainland, free zone and offshore for your activity.' },
-      { title: 'End-to-end setup', description: 'Licence, approvals, visas and office solutions coordinated together.' },
+      { title: 'End-to-end setup', description: 'Licence, approvals and documentation coordinated together.' },
       { title: 'India + UAE under one roof', description: 'Keep your Indian and UAE compliance with one partner.' },
     ],
     process: genericProcess,

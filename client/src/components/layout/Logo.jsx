@@ -1,15 +1,13 @@
 import { Link } from 'react-router-dom';
-import logoMark from '../../assets/logo-mark.svg';
+import logoDark from '../../assets/logo-digiads.svg';
+import logoLight from '../../assets/logo-digiads-light.svg';
 
-// Replace src/assets/logo-mark.svg with the official DigiAds logo when available.
-export default function Logo({ to = '/', sub = 'Business Solutions' }) {
+// Official "digiads" wordmark. `light` = white lettering for dark backgrounds (footer, admin sidebar).
+export default function Logo({ to = '/', sub = 'Business Solutions', light = false }) {
   return (
-    <Link to={to} className="logo" aria-label="DigiAds Business Solutions – Home">
-      <img src={logoMark} alt="" width="36" height="36" />
-      <span className="logo__text">
-        <span className="logo__name">DigiAds</span>
-        <span className="logo__sub">{sub}</span>
-      </span>
+    <Link to={to} className={`logo ${light ? 'logo--light' : ''}`} aria-label="DigiAds Business Solutions – Home">
+      <img className="logo__img" src={light ? logoLight : logoDark} alt="digiads" width="112" height="36" />
+      {sub && <span className="logo__sub">{sub}</span>}
     </Link>
   );
 }

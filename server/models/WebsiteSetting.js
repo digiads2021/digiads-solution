@@ -1,20 +1,27 @@
 import mongoose from 'mongoose';
 
-// A single settings document. Contact fields stay empty until DigiAds verifies them.
+// A single settings document, pre-filled with the official DigiAds contact details and social profiles.
 const settingSchema = new mongoose.Schema(
   {
     key: { type: String, default: 'site', unique: true },
     siteName: { type: String, default: 'DigiAds Business Solutions' },
     tagline: { type: String, default: 'Start. Comply. Protect. Build. Go Global.' },
     contact: {
-      phone: { type: String, default: '' },
-      email: { type: String, default: '' },
+      phone: { type: String, default: '+91 69011 17313' },
+      email: { type: String, default: 'info@digiadssolution.in' },
       whatsapp: { type: String, default: '' },
       addressIndia: { type: String, default: '' },
       addressUAE: { type: String, default: '' },
       hours: { type: String, default: '' },
     },
-    social: { facebook: String, instagram: String, linkedin: String, youtube: String, x: String },
+    social: {
+      facebook: { type: String, default: 'https://short.do/1-ITUd' },
+      instagram: { type: String, default: 'https://short.do/sEmEsh' },
+      youtube: { type: String, default: 'https://short.do/Mt7BeE' },
+      linkedin: { type: String, default: 'https://in.linkedin.com/company/digiadssolution' },
+      x: { type: String, default: 'https://x.com/DigiAdsBusiness' },
+      threads: { type: String, default: 'https://www.threads.com/@digiads.official' },
+    },
     seoDefaults: {
       title: { type: String, default: 'DigiAds Business Solutions – Registration, Compliance, Legal, Technology & UAE Setup' },
       description: {

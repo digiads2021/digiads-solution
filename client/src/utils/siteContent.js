@@ -53,5 +53,22 @@ export const howItWorks = [
 
 export const BLOG_CATEGORIES = ['Business', 'Startup', 'GST', 'Income Tax', 'MCA', 'Trademark', 'Legal', 'Compliance', 'Technology', 'UAE / Global Business'];
 
-// Contact placeholders: replaced automatically once verified details are saved in Admin > Settings.
-export const PLACEHOLDER = { phone: '[ADD VERIFIED PHONE]', email: '[ADD VERIFIED EMAIL]', address: '[ADD VERIFIED ADDRESS]' };
+// Official DigiAds contact details and social profiles. Admin > Settings can override any of them;
+// these defaults are used until then (and whenever the settings API is unavailable).
+export const BRAND = {
+  contact: {
+    phone: '+91 69011 17313',
+    email: 'info@digiadssolution.in',
+  },
+  social: {
+    facebook: 'https://short.do/1-ITUd',
+    instagram: 'https://short.do/sEmEsh',
+    youtube: 'https://short.do/Mt7BeE',
+    linkedin: 'https://in.linkedin.com/company/digiadssolution',
+    x: 'https://x.com/DigiAdsBusiness',
+    threads: 'https://www.threads.com/@digiads.official',
+  },
+};
+
+// "+91 69011 17313" -> "tel:+916901117313"
+export const telHref = (phone) => `tel:${String(phone || '').replace(/[^+\d]/g, '')}`;

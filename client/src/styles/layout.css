@@ -14,10 +14,10 @@
 .header__inner { display: flex; align-items: center; gap: var(--sp-5); height: var(--header-h); transition: height 0.2s; }
 .header--scrolled .header__inner { height: 64px; }
 .logo { display: inline-flex; align-items: center; gap: 10px; text-decoration: none !important; flex-shrink: 0; }
-.logo img { width: 36px; height: 36px; }
-.logo__text { display: flex; flex-direction: column; line-height: 1.05; }
-.logo__name { font-weight: 800; font-size: 1.125rem; color: var(--primary-dark); letter-spacing: -0.02em; }
-.logo__sub { font-size: 0.6875rem; font-weight: 600; color: var(--accent-strong); letter-spacing: 0.04em; text-transform: uppercase; }
+.logo__img { display: block; height: 36px; width: auto; }
+/* Small descriptor beside the wordmark, separated by a hairline */
+.logo__sub { padding-left: 10px; border-left: 1px solid var(--border-strong); font-size: 0.625rem; font-weight: 700; line-height: 1.2; max-width: 74px; color: var(--text-secondary); letter-spacing: 0.06em; text-transform: uppercase; }
+.logo--light .logo__sub { color: #9fb0d8; border-left-color: rgba(255, 255, 255, 0.2); }
 
 .nav { flex: 1; display: flex; justify-content: center; min-width: 0; }
 .nav__list { list-style: none; display: flex; align-items: center; gap: 2px; }
@@ -269,8 +269,7 @@
 .news-form__msg { width: 100%; font-size: var(--fs-xs); }
 .footer__main { padding: var(--sp-8) 0 var(--sp-6); display: grid; grid-template-columns: 1.4fr repeat(4, 1fr); gap: var(--sp-6); }
 .footer__brand p { margin-top: var(--sp-4); max-width: 300px; }
-.footer__brand .logo__name { color: #fff; }
-.footer__brand .logo__sub { color: #7fe0d8; }
+.footer__brand .logo__img { height: 40px; }
 .footer h3 { color: #fff; font-size: var(--fs-sm); margin-bottom: var(--sp-4); }
 .footer ul { list-style: none; display: grid; gap: 10px; }
 .footer__contact li { display: flex; gap: var(--sp-2); align-items: flex-start; }
@@ -296,3 +295,8 @@
 .page-hero { background: linear-gradient(180deg, var(--primary-light) 0%, #fff 100%); padding: var(--sp-7) 0 var(--sp-7); border-bottom: 1px solid var(--border); }
 .page-hero h1 { font-size: clamp(1.9rem, 1.4rem + 2vw, 2.75rem); margin-top: var(--sp-4); }
 .page-hero .lead { margin-bottom: 0; }
+.drawer__contact { display: grid; gap: 8px; font-size: var(--fs-sm); }
+.drawer__contact a { display: inline-flex; align-items: center; gap: 8px; color: var(--text-primary); font-weight: 600; }
+.drawer__contact svg { color: var(--primary); flex-shrink: 0; }
+.drawer__foot .social a { width: 34px; height: 34px; }
+.footer ul.footer__social { display: flex; flex-wrap: wrap; gap: 8px; margin-top: var(--sp-4); }

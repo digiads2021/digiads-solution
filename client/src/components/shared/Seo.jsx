@@ -33,7 +33,7 @@ export default function Seo({ title, description, path, image, type = 'website',
     setMeta('property', 'og:url', url);
     setMeta('property', 'og:type', type);
     setMeta('property', 'og:site_name', 'DigiAds Business Solutions');
-    setMeta('property', 'og:image', image || defaults.ogImage || `${SITE_URL}/favicon.svg`);
+    setMeta('property', 'og:image', image || defaults.ogImage || `${SITE_URL}/og-image.png`);
     setMeta('name', 'twitter:card', 'summary_large_image');
     setMeta('name', 'twitter:title', fullTitle);
     setMeta('name', 'twitter:description', desc);

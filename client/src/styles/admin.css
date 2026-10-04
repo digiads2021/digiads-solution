@@ -1,7 +1,7 @@
 .admin { display: grid; grid-template-columns: 248px 1fr; min-height: 100vh; background: #f3f5f9; }
 .admin-side { background: var(--primary-darker); color: #c9d4ee; padding: var(--sp-4); position: sticky; top: 0; height: 100vh; overflow-y: auto; display: flex; flex-direction: column; }
 .admin-side .logo { padding: var(--sp-2) var(--sp-2) var(--sp-5); }
-.admin-side .logo__name { color: #fff; }
+.admin-side .logo__img { height: 32px; }
 .admin-nav { list-style: none; display: grid; gap: 2px; }
 .admin-nav__label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; color: #7d8db5; padding: var(--sp-4) var(--sp-3) var(--sp-2); }
 .admin-nav a { display: flex; align-items: center; gap: var(--sp-3); padding: 9px 12px; border-radius: var(--radius-sm); color: #c9d4ee; font-size: var(--fs-sm); font-weight: 500; text-decoration: none; }

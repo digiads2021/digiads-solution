@@ -3,7 +3,8 @@ import { Phone, Mail, MapPin } from 'lucide-react';
 import Logo from './Logo.jsx';
 import NewsletterForm from '../forms/NewsletterForm.jsx';
 import { useSite } from '../../context/SiteContext.jsx';
-import { PLACEHOLDER } from '../../utils/siteContent.js';
+import { telHref } from '../../utils/siteContent.js';
+import SocialLinks from '../shared/SocialLinks.jsx';
 
 export default function Footer() {
   const { navigation, settings } = useSite();
@@ -27,13 +28,14 @@ export default function Footer() {
       <div className="container">
         <div className="footer__main">
           <div className="footer__brand">
-            <Logo />
+            <Logo light />
             <p>{settings?.tagline || 'Start. Comply. Protect. Build. Go Global.'} Registration, compliance, legal, technology and UAE business services under one roof.</p>
             <ul className="footer__contact">
-              <li><Phone size={16} aria-hidden="true" /> {c.phone ? <a href={`tel:${c.phone}`}>{c.phone}</a> : PLACEHOLDER.phone}</li>
-              <li><Mail size={16} aria-hidden="true" /> {c.email ? <a href={`mailto:${c.email}`}>{c.email}</a> : PLACEHOLDER.email}</li>
-              <li><MapPin size={16} aria-hidden="true" /> {c.addressIndia || PLACEHOLDER.address}</li>
+              {c.phone && <li><Phone size={16} aria-hidden="true" /> <a href={telHref(c.phone)}>{c.phone}</a></li>}
+              {c.email && <li><Mail size={16} aria-hidden="true" /> <a href={`mailto:${c.email}`}>{c.email}</a></li>}
+              {c.addressIndia && <li><MapPin size={16} aria-hidden="true" /> {c.addressIndia}</li>}
             </ul>
+            <SocialLinks variant="dark" className="footer__social" />
           </div>
           {pillarsToShow.map((p) => (
             <div key={p.key}>

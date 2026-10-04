@@ -30,7 +30,7 @@ export default function AdminLayout() {
   return (
     <div className="admin">
       <aside className={`admin-side ${open ? 'admin-side--open' : ''}`} aria-label="Admin navigation">
-        <Logo to="/admin/dashboard" sub="Admin Panel" />
+        <Logo to="/admin/dashboard" sub="Admin Panel" light />
         <nav>
           {groups.map((g) => (
             <ul className="admin-nav" key={g.label}>

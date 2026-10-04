@@ -1,11 +1,12 @@
 import { Link } from 'react-router-dom';
-import { Phone, Mail, MapPin, Clock, MessageCircle, ArrowRight, HelpCircle } from 'lucide-react';
+import { Phone, Mail, MapPin, Clock, MessageCircle, ArrowRight, HelpCircle, Share2 } from 'lucide-react';
 import Seo from '../components/shared/Seo.jsx';
 import PageHeroDark from '../components/shared/PageHeroDark.jsx';
 import ContactForm from '../components/forms/ContactForm.jsx';
 import { useSite } from '../context/SiteContext.jsx';
 import { useConsultation } from '../components/forms/ConsultationProvider.jsx';
-import { PLACEHOLDER } from '../utils/siteContent.js';
+import { telHref } from '../utils/siteContent.js';
+import SocialLinks from '../components/shared/SocialLinks.jsx';
 
 const NEXT_STEPS = [
   { title: 'We review your message', text: 'Your enquiry reaches the right person on our team.' },
@@ -18,15 +19,16 @@ export default function Contact() {
   const { openConsultation } = useConsultation();
   const c = settings?.contact || {};
 
+  // Only details that exist are shown; working hours and offices appear once added in Admin > Settings.
   const quick = [
-    { icon: Phone, label: 'Call us', value: c.phone, href: c.phone && `tel:${c.phone}`, ph: PLACEHOLDER.phone, tone: 'blue' },
-    { icon: Mail, label: 'Email us', value: c.email, href: c.email && `mailto:${c.email}`, ph: PLACEHOLDER.email, tone: 'teal' },
-    { icon: Clock, label: 'Working hours', value: c.hours, ph: '[ADD WORKING HOURS]', tone: 'violet' },
-  ];
+    c.phone && { icon: Phone, label: 'Call us', value: c.phone, href: telHref(c.phone), tone: 'blue' },
+    c.email && { icon: Mail, label: 'Email us', value: c.email, href: `mailto:${c.email}`, tone: 'teal' },
+    c.hours && { icon: Clock, label: 'Working hours', value: c.hours, tone: 'violet' },
+  ].filter(Boolean);
   const offices = [
-    { label: 'India office', value: c.addressIndia, ph: PLACEHOLDER.address },
-    { label: 'UAE office', value: c.addressUAE, ph: '[ADD VERIFIED UAE ADDRESS]' },
-  ];
+    { label: 'India office', value: c.addressIndia },
+    { label: 'UAE office', value: c.addressUAE },
+  ].filter((o) => o.value);
 
   return (
     <div className="contact-page">
@@ -49,13 +51,13 @@ export default function Contact() {
       {/* Quick contact tiles overlapping the hero */}
       <section className="ct-quick" aria-label="Contact details">
         <div className="container ct-quick__grid">
-          {quick.map(({ icon: I, label, value, href, ph, tone }) => {
+          {quick.map(({ icon: I, label, value, href, tone }) => {
             const body = (
               <>
                 <span className="ct-quick__icon"><I size={20} aria-hidden="true" /></span>
                 <span className="ct-quick__text">
                   <small>{label}</small>
-                  {value ? <strong>{value}</strong> : <strong className="muted">{ph}</strong>}
+                  <strong>{value}</strong>
                 </span>
                 {href && <ArrowRight size={16} className="ct-quick__arrow" aria-hidden="true" />}
               </>
@@ -64,6 +66,12 @@ export default function Contact() {
               ? <a key={label} href={href} className={`ct-quick__item ab-tone--${tone}`}>{body}</a>
               : <div key={label} className={`ct-quick__item ab-tone--${tone}`}>{body}</div>;
           })}
+          {!c.hours && (
+            <div className="ct-quick__item ab-tone--violet">
+              <span className="ct-quick__icon"><Share2 size={20} aria-hidden="true" /></span>
+              <span className="ct-quick__text"><small>Follow us</small><SocialLinks size={15} className="ct-quick__social" /></span>
+            </div>
+          )}
         </div>
       </section>
 
@@ -95,16 +103,24 @@ export default function Contact() {
               </ol>
             </div>
 
+            {offices.length > 0 && (
+              <div className="ct-card">
+                <h3>Our offices</h3>
+                <ul className="ct-offices">
+                  {offices.map((o) => (
+                    <li key={o.label}>
+                      <span className="icon-tile icon-tile--sm"><MapPin size={18} aria-hidden="true" /></span>
+                      <div><small>{o.label}</small><span>{o.value}</span></div>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+
             <div className="ct-card">
-              <h3>Our offices</h3>
-              <ul className="ct-offices">
-                {offices.map((o) => (
-                  <li key={o.label}>
-                    <span className="icon-tile icon-tile--sm"><MapPin size={18} aria-hidden="true" /></span>
-                    <div><small>{o.label}</small>{o.value ? <span>{o.value}</span> : <span className="muted">{o.ph}</span>}</div>
-                  </li>
-                ))}
-              </ul>
+              <h3>Follow DigiAds</h3>
+              <p className="small muted" style={{ margin: '0 0 12px' }}>Business tips, compliance reminders and updates.</p>
+              <SocialLinks />
             </div>
 
             <Link to="/faq" className="ct-faq">

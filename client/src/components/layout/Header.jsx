@@ -7,7 +7,7 @@ import MobileMenu from './MobileMenu.jsx';
 import SearchModal from './SearchModal.jsx';
 import { useSite } from '../../context/SiteContext.jsx';
 import { useConsultation } from '../forms/ConsultationProvider.jsx';
-import { PLACEHOLDER } from '../../utils/siteContent.js';
+import { telHref } from '../../utils/siteContent.js';
 
 export default function Header() {
   const { navigation, settings } = useSite();
@@ -60,8 +60,8 @@ export default function Header() {
         <div className="container">
           <span>Business services for India &amp; the UAE</span>
           <div className="utility-bar__group">
-            <span className="utility-bar__item"><Phone size={13} aria-hidden="true" /> {settings?.contact?.phone ? <a href={`tel:${settings.contact.phone}`}>{settings.contact.phone}</a> : PLACEHOLDER.phone}</span>
-            <span className="utility-bar__item"><Mail size={13} aria-hidden="true" /> {settings?.contact?.email ? <a href={`mailto:${settings.contact.email}`}>{settings.contact.email}</a> : PLACEHOLDER.email}</span>
+            {settings.contact.phone && <a className="utility-bar__item" href={telHref(settings.contact.phone)}><Phone size={13} aria-hidden="true" /> {settings.contact.phone}</a>}
+            {settings.contact.email && <a className="utility-bar__item" href={`mailto:${settings.contact.email}`}><Mail size={13} aria-hidden="true" /> {settings.contact.email}</a>}
             <Link to="/blog">Blog</Link>
             <Link to="/faq">FAQ</Link>
             <Link to="/contact">Contact</Link>

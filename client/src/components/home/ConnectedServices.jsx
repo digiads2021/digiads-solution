@@ -2,7 +2,6 @@ import { useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Check } from 'lucide-react';
 import Icon from '../../utils/icons.jsx';
-import logoMark from '../../assets/logo-mark.svg';
 import useOffscreenPause from '../../hooks/useOffscreenPause.js';
 
 // Hub-and-spoke diagram: one DigiAds hub wired to six service areas.
@@ -51,7 +50,7 @@ function Diagram() {
         <span className="cs-hub__ring" aria-hidden="true" />
         <span className="cs-hub__ring cs-hub__ring--2" aria-hidden="true" />
         <div className="cs-hub__core">
-          <img src={logoMark} alt="" width="44" height="44" />
+          <img src="/favicon.svg" alt="" width="44" height="44" />
           <strong>DigiAds</strong>
           <span>One platform</span>
         </div>

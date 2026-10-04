@@ -5,6 +5,9 @@ import Seo from '../components/shared/Seo.jsx';
 import PageHeroDark from '../components/shared/PageHeroDark.jsx';
 import Icon from '../utils/icons.jsx';
 import { useConsultation } from '../components/forms/ConsultationProvider.jsx';
+import { BRAND } from '../utils/siteContent.js';
+
+const EMAIL = BRAND.contact.email;
 
 // Template legal pages. IMPORTANT: have these reviewed by a lawyer before going live.
 const pages = {
@@ -17,7 +20,7 @@ const pages = {
       ['How we use it', 'We use this information to respond to your enquiry, provide the services you request, and send updates you have subscribed to. We do not sell your personal information.'],
       ['Sharing', 'We may share information with government portals, authorities or professionals only as required to deliver the service you have asked for, or where required by law.'],
       ['Data security', 'We take reasonable technical and organisational measures to protect your information.'],
-      ['Your choices', 'You can ask us to update or delete your information, or unsubscribe from emails at any time, by contacting us at [ADD VERIFIED EMAIL].'],
+      ['Your choices', `You can ask us to update or delete your information, or unsubscribe from emails at any time, by contacting us at ${EMAIL}.`],
       ['Updates', 'We may update this policy from time to time. The latest version will always be available on this page.'],
     ],
   },
@@ -31,7 +34,7 @@ const pages = {
       ['No guarantee of approval', 'DigiAds prepares and submits applications on your behalf but cannot guarantee approval by any government authority or third party.'],
       ['Your responsibilities', 'You agree to provide accurate and complete information and documents.'],
       ['Intellectual property', 'Website content, design and logos belong to DigiAds Business Solutions unless stated otherwise.'],
-      ['Governing law', '[ADD GOVERNING LAW AND JURISDICTION – to be confirmed by your lawyer]'],
+      ['Governing law', 'These terms are governed by the laws of India.'],
     ],
   },
   'refund-policy': {
@@ -39,9 +42,9 @@ const pages = {
     icon: 'RefreshCw',
     summary: 'When refunds apply and how to request one.',
     body: [
-      ['Overview', '[ADD VERIFIED REFUND POLICY] Describe when refunds are available, for example before work has started, and how government fees already paid are handled.'],
+      ['Overview', 'The scope and fees for every service are confirmed with you before work begins. Refund requests are reviewed individually, taking into account the work already completed on your order.'],
       ['Government fees', 'Government fees and third-party charges paid on your behalf are generally not refundable once paid.'],
-      ['How to request', 'Write to [ADD VERIFIED EMAIL] with your order details.'],
+      ['How to request', `Write to ${EMAIL} with your name, phone number and order details. We will respond with the outcome of your request.`],
     ],
   },
   disclaimer: {

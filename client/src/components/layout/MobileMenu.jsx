@@ -4,7 +4,8 @@ import { Link } from 'react-router-dom';
 import { ChevronDown, Search, X, Phone, Mail } from 'lucide-react';
 import Logo from './Logo.jsx';
 import useLockBodyScroll from '../../hooks/useLockBodyScroll.js';
-import { PLACEHOLDER } from '../../utils/siteContent.js';
+import { telHref } from '../../utils/siteContent.js';
+import SocialLinks from '../shared/SocialLinks.jsx';
 
 export default function MobileMenu({ open, onClose, navigation, settings, onSearch, onTalk }) {
   const [expanded, setExpanded] = useState(null);
@@ -53,10 +54,11 @@ export default function MobileMenu({ open, onClose, navigation, settings, onSear
         </div>
         <div className="drawer__foot">
           <button type="button" className="btn btn--primary btn--lg btn--block" onClick={() => { onClose(); onTalk(); }}>Talk to an Expert</button>
-          <div className="small muted" style={{ display: 'grid', gap: 4 }}>
-            <span style={{ display: 'flex', gap: 6, alignItems: 'center' }}><Phone size={14} /> {settings?.contact?.phone || PLACEHOLDER.phone}</span>
-            <span style={{ display: 'flex', gap: 6, alignItems: 'center' }}><Mail size={14} /> {settings?.contact?.email || PLACEHOLDER.email}</span>
+          <div className="drawer__contact">
+            {settings?.contact?.phone && <a href={telHref(settings.contact.phone)}><Phone size={16} aria-hidden="true" /> {settings.contact.phone}</a>}
+            {settings?.contact?.email && <a href={`mailto:${settings.contact.email}`}><Mail size={16} aria-hidden="true" /> {settings.contact.email}</a>}
           </div>
+          <SocialLinks size={16} />
         </div>
       </div>
     </>,

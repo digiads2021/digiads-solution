@@ -155,3 +155,16 @@
 .pagination button { min-width: 40px; height: 40px; border-radius: var(--radius-sm); border: 1px solid var(--border); background: var(--surface); }
 .pagination button[aria-current='page'] { background: var(--primary); color: #fff; border-color: var(--primary); }
 .pagination button:disabled { opacity: 0.4; cursor: default; }
+
+/* ---------- Social icons ---------- */
+.social { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+.social a {
+  width: 38px; height: 38px; display: grid; place-items: center; border-radius: 50%; text-decoration: none;
+  transition: background-color 0.15s, color 0.15s, transform 0.15s, border-color 0.15s;
+}
+.social a:hover { transform: translateY(-2px); }
+.social a:focus-visible { outline: none; box-shadow: var(--focus-ring); }
+.social--light a { color: var(--primary-dark); background: #fff; border: 1px solid var(--border); }
+.social--light a:hover { color: #fff; background: var(--primary); border-color: var(--primary); }
+.social--dark a { color: #dbe5ff; background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.14); }
+.social--dark a:hover { color: var(--primary-dark); background: #FFBD59; border-color: #FFBD59; }

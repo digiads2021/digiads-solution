@@ -48,7 +48,7 @@ export default function Settings() {
           <div className="panel__head"><h2>Website settings</h2></div>
           <div className="panel__body form-grid">
             {msg.text && <div className={`full form-alert form-alert--${msg.type}`}>{msg.text}</div>}
-            <div className="full notice">Enter only verified contact details. Until a field is filled, the website shows a placeholder like [ADD VERIFIED PHONE].</div>
+            <div className="full notice">Leave a field empty to use the official default (phone, email and social links). Address and working hours appear on the website only once filled in.</div>
             <Input label="Site name" name="siteName" id="siteName" value={s.siteName || ''} onChange={(e) => setS({ ...s, siteName: e.target.value })} />
             <Input label="Tagline" name="tagline" id="tagline" value={s.tagline || ''} onChange={(e) => setS({ ...s, tagline: e.target.value })} />
             <Input label="Phone" name="phone" id="phone" value={c.phone || ''} onChange={setPath('contact', 'phone')} />
@@ -61,6 +61,8 @@ export default function Settings() {
             <Input label="Instagram URL" name="instagram" id="instagram" value={so.instagram || ''} onChange={setPath('social', 'instagram')} />
             <Input label="LinkedIn URL" name="linkedin" id="linkedin" value={so.linkedin || ''} onChange={setPath('social', 'linkedin')} />
             <Input label="YouTube URL" name="youtube" id="youtube" value={so.youtube || ''} onChange={setPath('social', 'youtube')} />
+            <Input label="X (Twitter) URL" name="x" id="x" value={so.x || ''} onChange={setPath('social', 'x')} />
+            <Input label="Threads URL" name="threads" id="threads" value={so.threads || ''} onChange={setPath('social', 'threads')} />
             <div className="full"><Input label="Default SEO title" name="seoTitle" id="seoTitle" value={seo.title || ''} onChange={setPath('seoDefaults', 'title')} /></div>
             <div className="full"><Textarea label="Default SEO description" name="seoDesc" id="seoDesc" rows={2} value={seo.description || ''} onChange={setPath('seoDefaults', 'description')} /></div>
           </div>

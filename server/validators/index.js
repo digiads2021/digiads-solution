@@ -164,7 +164,7 @@ export const settingsSchema = z.object({
     })
     .optional(),
   social: z
-    .object({ facebook: str.optional(), instagram: str.optional(), linkedin: str.optional(), youtube: str.optional(), x: str.optional() })
+    .object({ facebook: str.optional(), instagram: str.optional(), linkedin: str.optional(), youtube: str.optional(), x: str.optional(), threads: str.optional() })
     .optional(),
   seoDefaults: z.object({ title: str.optional(), description: str.optional(), ogImage: str.optional() }).optional(),
 });

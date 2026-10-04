@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { ArrowRight, ChevronRight, MessageCircle, Phone } from 'lucide-react';
 import Icon from '../../utils/icons.jsx';
+import { telHref } from '../../utils/siteContent.js';
 
 const MAX_LINKS = 7;
 
@@ -94,7 +95,7 @@ export default function MegaMenu({ pillar, id, phone, onNavigate, onTalk }) {
           <div className="mega__strip">
             <span>Can’t find what you’re looking for? <Link to="/services" onClick={onNavigate}>Browse all services</Link></span>
             {phone && (
-              <a href={`tel:${phone}`} className="mega__strip-phone"><Phone size={14} aria-hidden="true" /> {phone}</a>
+              <a href={telHref(phone)} className="mega__strip-phone"><Phone size={14} aria-hidden="true" /> {phone}</a>
             )}
           </div>
         </div>

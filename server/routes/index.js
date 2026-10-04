@@ -29,7 +29,8 @@ const superadmin = [authenticateAdmin, requireRole('superadmin')];
 const bustNav = (req, res, next) => { nav.clearNavigationCache(); next(); };
 
 // ---------- Image uploads (admin) ----------
-const storage = multer.diskStorage({
+// Vercel's filesystem is read-only, so keep files in memory there and push them to Vercel Blob.
+const storage = process.env.BLOB_READ_WRITE_TOKEN ? multer.memoryStorage() : multer.diskStorage({
   destination: 'uploads/',
   filename: (req, file, cb) => cb(null, `${Date.now()}-${crypto.randomBytes(6).toString('hex')}${path.extname(file.originalname).toLowerCase()}`),
 });

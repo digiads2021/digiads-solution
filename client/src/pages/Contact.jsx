@@ -44,7 +44,7 @@ export default function Contact() {
           <button type="button" className="btn btn--glow btn--lg" onClick={() => openConsultation()}>
             <MessageCircle size={18} aria-hidden="true" /> Talk to an Expert
           </button>
-          <a href="#contact-form" className="btn btn--outline-white btn--lg">Send a message</a>
+          <a href="#contact-form" className="btn btn--secondary btn--lg">Send a message</a>
         </div>
       </PageHeroDark>
 
@@ -88,7 +88,7 @@ export default function Contact() {
               <span className="ct-callback__icon"><MessageCircle size={22} aria-hidden="true" /></span>
               <h3>Prefer a callback?</h3>
               <p>Tell us which service you need and an expert will call you.</p>
-              <button type="button" className="btn btn--white btn--block" onClick={() => openConsultation()}>Talk to an Expert</button>
+              <button type="button" className="btn btn--primary btn--block" onClick={() => openConsultation()}>Talk to an Expert</button>
             </div>
 
             <div className="ct-card">

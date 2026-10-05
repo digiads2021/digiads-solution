@@ -86,7 +86,7 @@ export default function Hero({ onSearch }) {
           </button>
           <div className="hero__ctas">
             <Link to="/services" className="btn btn--glow btn--lg">Explore Services <ArrowRight size={18} aria-hidden="true" /></Link>
-            <button type="button" className="btn btn--outline-white btn--lg" onClick={() => openConsultation()}>Talk to an Expert</button>
+            <button type="button" className="btn btn--secondary btn--lg" onClick={() => openConsultation()}>Talk to an Expert</button>
           </div>
         </div>
         <HeroVisual />

@@ -84,7 +84,7 @@ export default function About() {
               <p className="lead">DigiAds Business Solutions helps entrepreneurs and companies start, comply, protect, build and grow — in India and the UAE.</p>
               <div className="hero__ctas">
                 <Link to="/services" className="btn btn--glow btn--lg">Explore our services <ArrowRight size={18} aria-hidden="true" /></Link>
-                <button type="button" className="btn btn--outline-white btn--lg" onClick={() => openConsultation()}>Talk to an Expert</button>
+                <button type="button" className="btn btn--secondary btn--lg" onClick={() => openConsultation()}>Talk to an Expert</button>
               </div>
             </div>
             <HeroBoard />
@@ -206,8 +206,8 @@ export default function About() {
               <p>Tell us what you’re trying to achieve. We’ll suggest the right service and explain the next steps — before you commit to anything.</p>
             </div>
             <div className="ab-cta__actions">
-              <button type="button" className="btn btn--white btn--lg" onClick={() => openConsultation()}>Talk to an Expert</button>
-              <Link to="/contact" className="btn btn--outline-white btn--lg">Contact Us</Link>
+              <button type="button" className="btn btn--primary btn--lg" onClick={() => openConsultation()}>Talk to an Expert</button>
+              <Link to="/contact" className="btn btn--secondary btn--lg">Contact Us</Link>
             </div>
           </div>
         </div>

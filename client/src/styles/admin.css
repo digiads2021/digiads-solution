@@ -1,10 +1,10 @@
 .admin { display: grid; grid-template-columns: 248px 1fr; min-height: 100vh; background: #f4f1ec; }
-.admin-side { background: var(--primary-darker); color: #d6d3ce; padding: var(--sp-4); position: sticky; top: 0; height: 100vh; overflow-y: auto; display: flex; flex-direction: column; }
+.admin-side { background: var(--primary-darker); color: #d5deec; padding: var(--sp-4); position: sticky; top: 0; height: 100vh; overflow-y: auto; display: flex; flex-direction: column; }
 .admin-side .logo { padding: var(--sp-2) var(--sp-2) var(--sp-5); }
 .admin-side .logo__img { height: 32px; }
 .admin-nav { list-style: none; display: grid; gap: 2px; }
-.admin-nav__label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; color: #8a847c; padding: var(--sp-4) var(--sp-3) var(--sp-2); }
-.admin-nav a { display: flex; align-items: center; gap: var(--sp-3); padding: 9px 12px; border-radius: var(--radius-sm); color: #d6d3ce; font-size: var(--fs-sm); font-weight: 500; text-decoration: none; }
+.admin-nav__label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; color: #8c9ab3; padding: var(--sp-4) var(--sp-3) var(--sp-2); }
+.admin-nav a { display: flex; align-items: center; gap: var(--sp-3); padding: 9px 12px; border-radius: var(--radius-sm); color: #d5deec; font-size: var(--fs-sm); font-weight: 500; text-decoration: none; }
 .admin-nav a:hover { background: rgba(255, 255, 255, 0.06); color: #fff; }
 .admin-nav a.active { background: var(--primary); color: #fff; }
 .admin-side__foot { margin-top: auto; padding-top: var(--sp-4); font-size: var(--fs-xs); }

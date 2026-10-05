@@ -30,8 +30,9 @@ ul, ol { margin: 0; padding: 0; }
 
 .section { padding: var(--sp-9) 0; }
 .section--alt { background: var(--background); }
-.section--dark { background: var(--primary-dark); color: #fff; }
-.section--dark h2, .section--dark h3 { color: #fff; }
+/* Former dark bands are now soft light-blue sections */
+.section--dark { background: linear-gradient(180deg, #f3f7fd 0%, #eaf1fb 100%); color: var(--text-primary); }
+.section--dark h2, .section--dark h3 { color: var(--primary); }
 @media (max-width: 1023px) { .section { padding: var(--sp-8) 0; } }
 @media (max-width: 767px) { .section { padding: var(--sp-7) 0; } }
 
@@ -41,10 +42,9 @@ ul, ol { margin: 0; padding: 0; }
   color: var(--accent-strong); margin-bottom: var(--sp-3);
 }
 .eyebrow::before { content: ''; width: 18px; height: 2px; border-radius: 2px; background: linear-gradient(90deg, var(--primary), var(--accent)); }
-.section--dark .eyebrow::before, .hero .eyebrow::before, .consult .eyebrow::before { background: linear-gradient(90deg, #ffd08a, #ffbd59); }
-.section--dark .eyebrow { color: #ffbd59; }
+
 .lead { font-size: var(--fs-md); color: var(--text-secondary); max-width: 680px; }
-.section--dark .lead { color: #d6d3ce; }
+
 .muted { color: var(--text-muted); }
 .small { font-size: var(--fs-sm); }
 .center { text-align: center; }

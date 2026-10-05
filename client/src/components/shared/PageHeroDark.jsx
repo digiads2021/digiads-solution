@@ -3,7 +3,7 @@ import Breadcrumbs from '../layout/Breadcrumbs.jsx';
 import useOffscreenPause from '../../hooks/useOffscreenPause.js';
 import Icon from '../../utils/icons.jsx';
 
-// Dark, animated page header shared by Contact and the legal pages (styles in pages.css).
+// Soft yellow-and-white animated page header shared by Contact and the legal pages (styles in pages.css).
 export default function PageHeroDark({ crumbs, pill, icon, title, lead, children, narrow = false, id = 'page-title' }) {
   const ref = useRef(null);
   useOffscreenPause(ref);

@@ -182,7 +182,7 @@ export function TechnologySection({ services }) {
           <div className="eyebrow">Technology</div>
           <h2 id="tech-title">Build the digital future of your business</h2>
           <p className="lead">Websites, web applications and mobile apps designed around how your business works — plus the integrations that connect them.</p>
-          <Link to="/services/website-app-development" className="btn btn--white btn--lg" style={{ marginTop: 8 }}>Build Your Digital Product</Link>
+          <Link to="/services/website-app-development" className="btn btn--primary btn--lg" style={{ marginTop: 8 }}>Build Your Digital Product</Link>
         </div>
         <div className="tech__tiles">
           {list.map((s) => (

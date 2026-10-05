@@ -136,8 +136,8 @@ export default function Legal({ page }) {
                 <p>Our team is happy to explain how it applies to you.</p>
               </div>
               <div className="lg-help__actions">
-                <Link to="/contact" className="btn btn--white"><Mail size={16} aria-hidden="true" /> Contact us</Link>
-                <button type="button" className="btn btn--outline-white" onClick={() => openConsultation()}><MessageCircle size={16} aria-hidden="true" /> Talk to an Expert</button>
+                <Link to="/contact" className="btn btn--primary"><Mail size={16} aria-hidden="true" /> Contact us</Link>
+                <button type="button" className="btn btn--secondary" onClick={() => openConsultation()}><MessageCircle size={16} aria-hidden="true" /> Talk to an Expert</button>
               </div>
             </div>
 

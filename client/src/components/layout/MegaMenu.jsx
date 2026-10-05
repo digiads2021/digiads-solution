@@ -15,7 +15,7 @@ function MegaArt() {
         <linearGradient id="ma-shield" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stopColor="#e8590c" /><stop offset="1" stopColor="#ffbd59" /></linearGradient>
         <linearGradient id="ma-coin" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stopColor="#fcd34d" /><stop offset="1" stopColor="#f59e0b" /></linearGradient>
       </defs>
-      <ellipse cx="100" cy="158" rx="78" ry="8" fill="#141414" opacity=".12" />
+      <ellipse cx="100" cy="158" rx="78" ry="8" fill="#1b3a6b" opacity=".12" />
       <g className="mega__art-doc">
         <rect x="58" y="18" width="86" height="112" rx="10" fill="url(#ma-doc)" stroke="#efe6d8" />
         <rect x="58" y="18" width="86" height="20" rx="10" fill="url(#ma-head)" />

@@ -13,7 +13,7 @@
 .lead-card {
   position: relative; overflow: hidden; width: 100%; max-width: 360px; justify-self: end;
   background: #fff; border: 1px solid var(--border); border-radius: 20px; padding: 22px 22px 18px;
-  box-shadow: 0 1px 2px rgba(20, 20, 20, 0.05), 0 20px 44px -18px rgba(20, 20, 20, 0.28);
+  box-shadow: 0 1px 2px rgba(27, 58, 107, 0.05), 0 20px 44px -18px rgba(27, 58, 107, 0.28);
 }
 .lead-card::before { content: ''; position: absolute; inset: 0 0 auto; height: 4px; background: linear-gradient(90deg, var(--primary), var(--accent)); }
 .lead-card h2 { font-size: 1.125rem; line-height: 1.3; margin-bottom: 4px; }
@@ -33,7 +33,7 @@
 .form--compact .input { min-height: 42px; padding: 8px 12px; border-radius: 10px; font-size: 0.9375rem; }
 .form--compact .textarea { min-height: 64px; padding: 8px 12px; border-radius: 10px; font-size: 0.9375rem; }
 .form--compact .input::placeholder, .form--compact .textarea::placeholder { font-size: 0.875rem; }
-.lead-card__submit { min-height: 46px; border-radius: 12px; font-size: var(--fs-base); font-weight: 700; box-shadow: 0 10px 22px -10px rgba(20, 20, 20, 0.7); }
+.lead-card__submit { min-height: 46px; border-radius: 12px; font-size: var(--fs-base); font-weight: 700; box-shadow: 0 10px 22px -10px rgba(27, 58, 107, 0.7); }
 .lead-card__note { margin: 0; text-align: center; line-height: 1.45; }
 /* 16px text on phones stops iOS from zooming into fields */
 @media (max-width: 639px) { .form--compact .input, .form--compact .textarea { font-size: 1rem; min-height: 44px; } }
@@ -91,9 +91,9 @@
 .notice--info { background: var(--primary-light); color: var(--primary-dark); }
 .reviewed { font-size: var(--fs-xs); color: var(--text-muted); display: inline-flex; align-items: center; gap: 6px; }
 
-.cta-banner { background: var(--primary-dark); color: #fff; border-radius: var(--radius-lg); padding: var(--sp-7); display: flex; justify-content: space-between; align-items: center; gap: var(--sp-5); flex-wrap: wrap; background-image: radial-gradient(600px 300px at 100% 0%, rgba(245, 158, 11, 0.3), transparent 60%); }
-.cta-banner h2 { color: #fff; margin-bottom: 6px; }
-.cta-banner p { color: #d6d3ce; margin: 0; }
+.cta-banner { background: linear-gradient(135deg, #fff4d9 0%, #fffaf0 50%, #edf3fc 100%); color: var(--text-primary); border: 1px solid #f3e3c0; border-radius: var(--radius-lg); padding: var(--sp-7); display: flex; justify-content: space-between; align-items: center; gap: var(--sp-5); flex-wrap: wrap; box-shadow: 0 24px 50px -36px rgba(27, 58, 107, 0.4); }
+.cta-banner h2 { color: var(--primary); margin-bottom: 6px; }
+.cta-banner p { color: var(--text-secondary); margin: 0; }
 .cta-banner__actions { display: flex; gap: var(--sp-3); flex-wrap: wrap; }
 @media (max-width: 639px) { .cta-banner { padding: var(--sp-5); } }
 

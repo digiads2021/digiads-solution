@@ -1,13 +1,23 @@
 {
+  "id": "/",
   "name": "DigiAds Business Solutions",
   "short_name": "DigiAds",
-  "description": "One stop solutions, for your business",
-  "icons": [
-    { "src": "/icon-192.png", "sizes": "192x192", "type": "image/png" },
-    { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png" }
-  ],
-  "start_url": "/",
+  "description": "One stop solutions, for your business — registration, tax, compliance, legal, technology and UAE setup.",
+  "start_url": "/?source=app",
+  "scope": "/",
   "display": "standalone",
+  "orientation": "portrait-primary",
   "background_color": "#ffffff",
-  "theme_color": "#0A0A0A"
+  "theme_color": "#1b3a6b",
+  "categories": ["business", "finance", "productivity"],
+  "icons": [
+    { "src": "/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ],
+  "shortcuts": [
+    { "name": "All services", "url": "/services", "icons": [{ "src": "/icon-192.png", "sizes": "192x192" }] },
+    { "name": "Talk to an expert", "url": "/talk-to-an-expert", "icons": [{ "src": "/icon-192.png", "sizes": "192x192" }] },
+    { "name": "Contact us", "url": "/contact", "icons": [{ "src": "/icon-192.png", "sizes": "192x192" }] }
+  ]
 }

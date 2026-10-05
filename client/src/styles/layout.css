@@ -336,3 +336,33 @@
 }
 @media (prefers-reduced-motion: reduce) { .wa-fab__icon::after { animation: none; opacity: 0; } }
 @media print { .wa-fab { display: none; } }
+
+/* ---------- Footer: Download App card ---------- */
+.app-card {
+  display: flex; align-items: center; gap: var(--sp-5); flex-wrap: wrap; margin-bottom: var(--sp-6);
+  padding: var(--sp-5); border-radius: 22px;
+  background: radial-gradient(420px 220px at 100% 0%, rgba(255, 189, 89, 0.22), transparent 70%), rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+.app-card__icon { width: 60px; height: 60px; flex-shrink: 0; border-radius: 16px; background: #fff; box-shadow: 0 10px 24px -10px rgba(0, 0, 0, 0.35); }
+.app-card__text { flex: 1; min-width: 220px; }
+.app-card__text h3 { margin: 0 0 4px; font-size: var(--fs-lg); color: #fff; }
+.app-card__text p { margin: 0; color: #d5deec; font-size: var(--fs-sm); }
+.footer ul.app-card__platforms { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+.app-card__platforms li {
+  display: inline-flex; align-items: center; gap: 6px; padding: 4px 10px; border-radius: 99px; font-size: 12px; font-weight: 600;
+  color: #eef3fb; background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.12);
+}
+.app-card__platforms svg { color: #ffbd59; flex-shrink: 0; }
+.app-card__btn { min-height: 50px; padding: 0 26px; font-size: var(--fs-base); flex-shrink: 0; }
+.app-card__installed { display: inline-flex; align-items: center; gap: 8px; font-weight: 700; color: #9be8c6; }
+@media (max-width: 639px) {
+  .app-card { padding: var(--sp-4); gap: var(--sp-4); }
+  .app-card__btn { width: 100%; }
+}
+
+/* Install instructions dialog */
+.app-steps { list-style: none; margin: var(--sp-4) 0 var(--sp-5); padding: 0; display: grid; gap: var(--sp-3); counter-reset: s; }
+.app-steps li { display: flex; align-items: center; gap: var(--sp-3); padding: 12px 14px; border-radius: 14px; background: var(--soft-yellow); border: 1px solid #f3e3c0; font-size: var(--fs-sm); color: var(--text-primary); }
+.app-steps li > span { width: 36px; height: 36px; flex-shrink: 0; display: grid; place-items: center; border-radius: 10px; background: #fff; color: var(--primary); border: 1px solid var(--border); }
+.app-steps li > p { margin: 0; line-height: 1.5; }

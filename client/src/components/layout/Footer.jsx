@@ -6,6 +6,7 @@ import { useSite } from '../../context/SiteContext.jsx';
 import { telHref, waLink, TAGLINE } from '../../utils/siteContent.js';
 import WhatsAppIcon from '../shared/WhatsAppIcon.jsx';
 import SocialLinks from '../shared/SocialLinks.jsx';
+import DownloadApp from './DownloadApp.jsx';
 
 export default function Footer() {
   const { navigation, settings } = useSite();
@@ -63,6 +64,7 @@ export default function Footer() {
             </ul>
           </div>
         </div>
+        <DownloadApp />
         <p className="footer__disclaimer">
           DigiAds Business Solutions is a private professional services provider and is not a government body. Government fees, processing times and approvals are decided by the respective authorities.
         </p>

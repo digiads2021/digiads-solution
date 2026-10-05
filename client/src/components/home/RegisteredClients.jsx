@@ -55,8 +55,8 @@ export default function RegisteredClients() {
       <div className="container">
         <div className="rc__head">
           <div>
-            <div className="eyebrow">Our clients</div>
-            <h2 id="rc-title">Businesses we’ve <span className="text-gradient">registered</span></h2>
+            <div className="eyebrow">Trusted by growing businesses</div>
+            <h2 id="rc-title">Our Beloved <span className="text-gradient">Clients</span></h2>
             <p className="lead">From pharma and export companies to finance firms, media, retail, education and NGOs — these businesses started their journey with a DigiAds registration.</p>
           </div>
           <div className="rc__stat" aria-label={`${CLIENTS.length} featured client registrations`}>

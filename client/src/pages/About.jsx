@@ -8,6 +8,7 @@ import { values, journey } from '../utils/siteContent.js';
 import { useConsultation } from '../components/forms/ConsultationProvider.jsx';
 import useScrollReveal from '../hooks/useScrollReveal.js';
 import useOffscreenPause from '../hooks/useOffscreenPause.js';
+import Credentials from '../components/shared/Credentials.jsx';
 
 const STATS = [
   { value: '150+', label: 'Services' },
@@ -120,6 +121,9 @@ export default function About() {
           </div>
         </div>
       </section>
+
+      {/* ---------- Registered & certified ---------- */}
+      <Credentials />
 
       {/* ---------- What we do ---------- */}
       <section className="section section--alt" aria-labelledby="do-title">

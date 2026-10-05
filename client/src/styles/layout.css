@@ -366,3 +366,5 @@
 .app-steps li { display: flex; align-items: center; gap: var(--sp-3); padding: 12px 14px; border-radius: 14px; background: var(--soft-yellow); border: 1px solid #f3e3c0; font-size: var(--fs-sm); color: var(--text-primary); }
 .app-steps li > span { width: 36px; height: 36px; flex-shrink: 0; display: grid; place-items: center; border-radius: 10px; background: #fff; color: var(--primary); border: 1px solid var(--border); }
 .app-steps li > p { margin: 0; line-height: 1.5; }
+.footer__regs { display: flex; flex-wrap: wrap; gap: 6px 22px; margin: 0 0 var(--sp-3); font-size: var(--fs-xs); color: #d5deec; }
+.footer__regs strong { color: #fff; letter-spacing: 0.02em; }

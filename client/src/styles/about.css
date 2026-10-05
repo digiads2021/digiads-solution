@@ -143,3 +143,38 @@
 @media (max-width: 767px) { .ab-cta { padding: var(--sp-5); border-radius: 20px; } .ab-cta__actions .btn { flex: 1; } }
 
 @media (prefers-reduced-motion: reduce) { .ab-chip, .ab-board__list li { animation: none; } }
+
+/* ---------- Registered & certified ---------- */
+.cred { background: linear-gradient(180deg, #ffffff 0%, var(--soft-blue) 100%); }
+.cred__grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--sp-5); }
+.cred__card {
+  position: relative; overflow: hidden; display: flex; flex-direction: column; gap: var(--sp-2);
+  padding: var(--sp-5); border-radius: 22px; background: #fff; border: 1px solid var(--border);
+  box-shadow: 0 18px 40px -30px rgba(27, 58, 107, 0.45);
+}
+.cred__card::before { content: ''; position: absolute; inset: 0 0 auto; height: 4px; background: linear-gradient(90deg, var(--primary), var(--accent)); }
+.cred__top { display: flex; align-items: center; justify-content: space-between; margin-bottom: var(--sp-2); }
+.cred__icon { width: 52px; height: 52px; display: grid; place-items: center; border-radius: 16px; }
+.cred__icon--msme { color: var(--primary); background: linear-gradient(135deg, #ffd08a, #ffbd59); }
+.cred__icon--trade { color: var(--primary); background: #e6eefb; }
+.cred__icon--office { color: #9a5800; background: var(--soft-yellow); border: 1px solid #f3e3c0; }
+.cred__badge { display: inline-flex; align-items: center; gap: 5px; padding: 4px 10px; border-radius: 99px; font-size: 12px; font-weight: 700; color: #15803d; background: #e8f6ee; }
+.cred__card h3 { margin: 0; font-size: var(--fs-lg); color: var(--primary); }
+.cred__issuer { margin: 0; font-size: var(--fs-sm); color: var(--text-muted); }
+.cred__number {
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--sp-2) var(--sp-3); margin-top: var(--sp-3);
+  padding: 12px 14px; border-radius: 14px; background: var(--soft-yellow); border: 1px dashed #e9cf97;
+}
+.cred__number > span { display: flex; flex-direction: column; min-width: 0; }
+.cred__number small { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-muted); }
+.cred__number strong { font-size: 1.0625rem; letter-spacing: 0.02em; color: var(--primary); white-space: nowrap; font-variant-numeric: tabular-nums; }
+.cred__copy {
+  flex-shrink: 0; display: inline-flex; align-items: center; gap: 6px; height: 34px; padding: 0 12px; border-radius: 10px; cursor: pointer;
+  border: 1px solid var(--border-strong); background: #fff; color: var(--primary); font-size: 12px; font-weight: 700;
+}
+.cred__copy:hover { border-color: var(--primary); }
+.cred__copy:focus-visible { outline: none; box-shadow: var(--focus-ring); }
+.cred__link { display: inline-flex; align-items: center; gap: 6px; margin-top: auto; padding-top: var(--sp-3); font-size: var(--fs-sm); font-weight: 700; color: var(--accent-strong); }
+.cred__link svg { flex-shrink: 0; }
+.cred__address { margin-top: var(--sp-3); font-style: normal; font-size: var(--fs-base); line-height: 1.6; color: var(--text-primary); }
+@media (max-width: 1023px) { .cred__grid { grid-template-columns: 1fr; max-width: 560px; margin: 0 auto; } }

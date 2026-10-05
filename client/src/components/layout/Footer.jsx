@@ -3,7 +3,7 @@ import { Phone, Mail, MapPin } from 'lucide-react';
 import Logo from './Logo.jsx';
 import NewsletterForm from '../forms/NewsletterForm.jsx';
 import { useSite } from '../../context/SiteContext.jsx';
-import { telHref, waLink, TAGLINE } from '../../utils/siteContent.js';
+import { telHref, waLink, TAGLINE, BRAND } from '../../utils/siteContent.js';
 import WhatsAppIcon from '../shared/WhatsAppIcon.jsx';
 import SocialLinks from '../shared/SocialLinks.jsx';
 import DownloadApp from './DownloadApp.jsx';
@@ -65,6 +65,10 @@ export default function Footer() {
           </div>
         </div>
         <DownloadApp />
+        <p className="footer__regs">
+          <span>MSME (Udyam) Reg. No. <strong>{BRAND.registrations.udyam}</strong></span>
+          <span>Trade Licence No. <strong>{BRAND.registrations.tradeLicence}</strong></span>
+        </p>
         <p className="footer__disclaimer">
           DigiAds Business Solutions is a private professional services provider and is not a government body. Government fees, processing times and approvals are decided by the respective authorities.
         </p>

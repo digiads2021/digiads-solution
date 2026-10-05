@@ -63,6 +63,20 @@ export const BRAND = {
     phone: '+91 69011 17313',
     email: 'info@digiadssolution.in',
     whatsapp: '+91 69011 17313', // WhatsApp Business (open 24 hours)
+    addressIndia: 'G-1, Bhuyan Bunglow, Kalbari, Abhayapuri, Bongaigaon, Assam 783384',
+  },
+  // Registered office, structured for search engines (schema.org PostalAddress).
+  postalAddress: {
+    streetAddress: 'G-1, Bhuyan Bunglow, Kalbari',
+    addressLocality: 'Abhayapuri',
+    addressRegion: 'Assam',
+    postalCode: '783384',
+    addressCountry: 'IN',
+  },
+  // Government registrations shown on the About page and in the footer.
+  registrations: {
+    udyam: 'UDYAM-AS-04-0000774',
+    tradeLicence: '105776OT28750932026',
   },
   social: {
     facebook: 'https://short.do/1-ITUd',

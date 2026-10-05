@@ -1,4 +1,4 @@
-import { TAGLINE } from './siteContent.js';
+import { TAGLINE, BRAND } from './siteContent.js';
 
 // JSON-LD structured data builders (Organization, Breadcrumb, Service, FAQ, Article).
 export const SITE_URL = (import.meta.env.VITE_SITE_URL || window.location.origin).replace(/\/$/, '');
@@ -23,6 +23,11 @@ export const organizationSchema = (settings) => {
         ...(c.phone ? { telephone: c.phone } : {}), ...(c.email ? { email: c.email } : {}),
       }],
     } : {}),
+    address: { '@type': 'PostalAddress', ...BRAND.postalAddress },
+    identifier: [
+      { '@type': 'PropertyValue', propertyID: 'Udyam Registration Number', value: BRAND.registrations.udyam },
+      { '@type': 'PropertyValue', propertyID: 'Trade Licence Number', value: BRAND.registrations.tradeLicence },
+    ],
     ...(sameAs.length ? { sameAs } : {}),
   };
 };

@@ -5,7 +5,8 @@ import PageHeroDark from '../components/shared/PageHeroDark.jsx';
 import ContactForm from '../components/forms/ContactForm.jsx';
 import { useSite } from '../context/SiteContext.jsx';
 import { useConsultation } from '../components/forms/ConsultationProvider.jsx';
-import { telHref } from '../utils/siteContent.js';
+import { telHref, waLink } from '../utils/siteContent.js';
+import WhatsAppIcon from '../components/shared/WhatsAppIcon.jsx';
 import SocialLinks from '../components/shared/SocialLinks.jsx';
 
 const NEXT_STEPS = [
@@ -22,6 +23,7 @@ export default function Contact() {
   // Only details that exist are shown; working hours and offices appear once added in Admin > Settings.
   const quick = [
     c.phone && { icon: Phone, label: 'Call us', value: c.phone, href: telHref(c.phone), tone: 'blue' },
+    c.whatsapp && { icon: WhatsAppIcon, label: 'WhatsApp', value: 'Chat with us 24/7', href: waLink(c.whatsapp, 'Hi DigiAds, I would like to know more about your services.'), tone: 'wa', external: true },
     c.email && { icon: Mail, label: 'Email us', value: c.email, href: `mailto:${c.email}`, tone: 'teal' },
     c.hours && { icon: Clock, label: 'Working hours', value: c.hours, tone: 'violet' },
   ].filter(Boolean);
@@ -51,7 +53,7 @@ export default function Contact() {
       {/* Quick contact tiles overlapping the hero */}
       <section className="ct-quick" aria-label="Contact details">
         <div className="container ct-quick__grid">
-          {quick.map(({ icon: I, label, value, href, tone }) => {
+          {quick.map(({ icon: I, label, value, href, tone, external }) => {
             const body = (
               <>
                 <span className="ct-quick__icon"><I size={20} aria-hidden="true" /></span>
@@ -63,10 +65,10 @@ export default function Contact() {
               </>
             );
             return href
-              ? <a key={label} href={href} className={`ct-quick__item ab-tone--${tone}`}>{body}</a>
+              ? <a key={label} href={href} className={`ct-quick__item ab-tone--${tone}`} {...(external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}>{body}</a>
               : <div key={label} className={`ct-quick__item ab-tone--${tone}`}>{body}</div>;
           })}
-          {!c.hours && (
+          {quick.length < 3 && (
             <div className="ct-quick__item ab-tone--violet">
               <span className="ct-quick__icon"><Share2 size={20} aria-hidden="true" /></span>
               <span className="ct-quick__text"><small>Follow us</small><SocialLinks size={15} className="ct-quick__social" /></span>

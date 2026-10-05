@@ -299,3 +299,40 @@
 .drawer__contact svg { color: var(--primary); flex-shrink: 0; }
 .drawer__foot .social a { width: 34px; height: 34px; }
 .footer ul.footer__social { display: flex; flex-wrap: wrap; gap: 8px; margin-top: var(--sp-4); }
+
+/* ---------- Floating WhatsApp button ---------- */
+.wa-fab {
+  position: fixed; right: 20px; bottom: calc(20px + env(safe-area-inset-bottom)); z-index: 95;
+  display: flex; align-items: center; flex-direction: row-reverse; gap: 10px; text-decoration: none !important;
+}
+.wa-fab__icon {
+  position: relative; width: 58px; height: 58px; flex-shrink: 0; display: grid; place-items: center; border-radius: 50%;
+  color: #fff; background: #25d366; box-shadow: 0 10px 24px -6px rgba(37, 211, 102, 0.6), 0 4px 10px rgba(27, 58, 107, 0.15);
+  transition: transform 0.2s var(--ease), box-shadow 0.2s;
+}
+/* Gentle attention ring: three pulses after load, then still. */
+.wa-fab__icon::after {
+  content: ''; position: absolute; inset: 0; border-radius: 50%; border: 2px solid #25d366;
+  animation: waPulse 2s ease-out 1.5s 3 both;
+}
+@keyframes waPulse { from { transform: scale(1); opacity: 0.8; } to { transform: scale(1.6); opacity: 0; } }
+.wa-fab__label {
+  display: flex; flex-direction: column; padding: 8px 14px; border-radius: 14px; background: #fff; border: 1px solid var(--border);
+  box-shadow: 0 10px 28px -12px rgba(27, 58, 107, 0.35); white-space: nowrap;
+  opacity: 0; transform: translateX(8px); pointer-events: none; transition: opacity 0.2s, transform 0.2s var(--ease);
+}
+.wa-fab__label strong { font-size: var(--fs-sm); color: var(--primary); }
+.wa-fab__label small { font-size: 11px; font-weight: 600; color: #15803d; }
+.wa-fab:hover .wa-fab__icon, .wa-fab:focus-visible .wa-fab__icon { transform: scale(1.06); box-shadow: 0 14px 30px -6px rgba(37, 211, 102, 0.7), 0 4px 10px rgba(27, 58, 107, 0.18); }
+.wa-fab:hover .wa-fab__label, .wa-fab:focus-visible .wa-fab__label { opacity: 1; transform: none; }
+.wa-fab:focus-visible { outline: none; }
+.wa-fab:focus-visible .wa-fab__icon { box-shadow: 0 0 0 4px #fff, 0 0 0 7px #25d366; }
+@media (max-width: 1023px) {
+  .wa-fab { right: 16px; bottom: calc(16px + env(safe-area-inset-bottom)); }
+  /* Sit above the mobile "Talk to Expert / Get Started" bar. */
+  .has-sticky-cta .wa-fab { bottom: calc(84px + env(safe-area-inset-bottom)); }
+  .wa-fab__icon { width: 54px; height: 54px; }
+  .wa-fab__label { display: none; }
+}
+@media (prefers-reduced-motion: reduce) { .wa-fab__icon::after { animation: none; opacity: 0; } }
+@media print { .wa-fab { display: none; } }

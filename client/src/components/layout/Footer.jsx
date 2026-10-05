@@ -3,7 +3,8 @@ import { Phone, Mail, MapPin } from 'lucide-react';
 import Logo from './Logo.jsx';
 import NewsletterForm from '../forms/NewsletterForm.jsx';
 import { useSite } from '../../context/SiteContext.jsx';
-import { telHref, TAGLINE } from '../../utils/siteContent.js';
+import { telHref, waLink, TAGLINE } from '../../utils/siteContent.js';
+import WhatsAppIcon from '../shared/WhatsAppIcon.jsx';
 import SocialLinks from '../shared/SocialLinks.jsx';
 
 export default function Footer() {
@@ -33,6 +34,7 @@ export default function Footer() {
             <p>Registration, compliance, legal, technology and UAE business services under one roof.</p>
             <ul className="footer__contact">
               {c.phone && <li><Phone size={16} aria-hidden="true" /> <a href={telHref(c.phone)}>{c.phone}</a></li>}
+              {c.whatsapp && <li><WhatsAppIcon size={16} /> <a href={waLink(c.whatsapp, 'Hi DigiAds, I would like to know more about your services.')} target="_blank" rel="noopener noreferrer">Chat on WhatsApp</a></li>}
               {c.email && <li><Mail size={16} aria-hidden="true" /> <a href={`mailto:${c.email}`}>{c.email}</a></li>}
               {c.addressIndia && <li><MapPin size={16} aria-hidden="true" /> {c.addressIndia}</li>}
             </ul>

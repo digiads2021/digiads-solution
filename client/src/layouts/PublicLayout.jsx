@@ -2,6 +2,7 @@ import { Outlet } from 'react-router-dom';
 import Header from '../components/layout/Header.jsx';
 import Footer from '../components/layout/Footer.jsx';
 import ScrollToTop from '../components/layout/ScrollToTop.jsx';
+import WhatsAppButton from '../components/layout/WhatsAppButton.jsx';
 import { ConsultationProvider } from '../components/forms/ConsultationProvider.jsx';
 
 export default function PublicLayout() {
@@ -13,6 +14,7 @@ export default function PublicLayout() {
         <Outlet />
       </main>
       <Footer />
+      <WhatsAppButton />
     </ConsultationProvider>
   );
 }

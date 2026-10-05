@@ -146,3 +146,4 @@ a.ct-quick__item:hover .ct-quick__arrow { transform: translateX(4px); }
 }
 .ct-quick__social { margin-top: 6px; gap: 6px; }
 .ct-quick__social a { width: 32px; height: 32px; }
+.ab-tone--wa { --c: #128c4a; }

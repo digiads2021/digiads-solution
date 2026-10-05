@@ -4,7 +4,8 @@ import { Link } from 'react-router-dom';
 import { ChevronDown, Search, X, Phone, Mail } from 'lucide-react';
 import Logo from './Logo.jsx';
 import useLockBodyScroll from '../../hooks/useLockBodyScroll.js';
-import { telHref } from '../../utils/siteContent.js';
+import { telHref, waLink } from '../../utils/siteContent.js';
+import WhatsAppIcon from '../shared/WhatsAppIcon.jsx';
 import SocialLinks from '../shared/SocialLinks.jsx';
 
 export default function MobileMenu({ open, onClose, navigation, settings, onSearch, onTalk }) {
@@ -54,6 +55,11 @@ export default function MobileMenu({ open, onClose, navigation, settings, onSear
         </div>
         <div className="drawer__foot">
           <button type="button" className="btn btn--primary btn--lg btn--block" onClick={() => { onClose(); onTalk(); }}>Talk to an Expert</button>
+          {settings?.contact?.whatsapp && (
+            <a className="btn btn--wa btn--block" href={waLink(settings.contact.whatsapp, 'Hi DigiAds, I would like to know more about your services.')} target="_blank" rel="noopener noreferrer" onClick={onClose}>
+              <WhatsAppIcon size={18} /> Chat on WhatsApp
+            </a>
+          )}
           <div className="drawer__contact">
             {settings?.contact?.phone && <a href={telHref(settings.contact.phone)}><Phone size={16} aria-hidden="true" /> {settings.contact.phone}</a>}
             {settings?.contact?.email && <a href={`mailto:${settings.contact.email}`}><Mail size={16} aria-hidden="true" /> {settings.contact.email}</a>}

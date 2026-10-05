@@ -168,3 +168,6 @@
 .social--light a:hover { color: #fff; background: var(--primary); border-color: var(--primary); }
 .social--dark a { color: #eef3fb; background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.14); }
 .social--dark a:hover { color: var(--primary-dark); background: #FFBD59; border-color: #FFBD59; }
+.btn--wa { background: #25d366; color: #0b3d1f; font-weight: 700; }
+.btn--wa:hover { background: #1fbe5b; }
+.btn--wa svg { flex-shrink: 0; }

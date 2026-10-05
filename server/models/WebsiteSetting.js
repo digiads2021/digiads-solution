@@ -9,7 +9,7 @@ const settingSchema = new mongoose.Schema(
     contact: {
       phone: { type: String, default: '+91 69011 17313' },
       email: { type: String, default: 'info@digiadssolution.in' },
-      whatsapp: { type: String, default: '' },
+      whatsapp: { type: String, default: '+91 69011 17313' },
       addressIndia: { type: String, default: '' },
       addressUAE: { type: String, default: '' },
       hours: { type: String, default: '' },

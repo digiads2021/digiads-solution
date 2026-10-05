@@ -62,6 +62,7 @@ export const BRAND = {
   contact: {
     phone: '+91 69011 17313',
     email: 'info@digiadssolution.in',
+    whatsapp: '+91 69011 17313', // WhatsApp Business (open 24 hours)
   },
   social: {
     facebook: 'https://short.do/1-ITUd',
@@ -75,3 +76,9 @@ export const BRAND = {
 
 // "+91 69011 17313" -> "tel:+916901117313"
 export const telHref = (phone) => `tel:${String(phone || '').replace(/[^+\d]/g, '')}`;
+
+// WhatsApp click-to-chat link with an optional pre-filled message: "+91 69011 17313" -> https://wa.me/916901117313
+export const waLink = (number, text) => {
+  const digits = String(number || '').replace(/\D/g, '');
+  return `https://wa.me/${digits}${text ? `?text=${encodeURIComponent(text)}` : ''}`;
+};

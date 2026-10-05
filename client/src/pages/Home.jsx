@@ -2,6 +2,7 @@ import { useState } from 'react';
 import Seo from '../components/shared/Seo.jsx';
 import Hero from '../components/home/Hero.jsx';
 import ConnectedServices from '../components/home/ConnectedServices.jsx';
+import RegisteredClients from '../components/home/RegisteredClients.jsx';
 import SearchModal from '../components/layout/SearchModal.jsx';
 import {
   QuickActions, PillarStrip, WhyDigiAds, CategoryGrid, PopularServices, IntentTiles, BusinessJourney,
@@ -39,6 +40,7 @@ export default function Home() {
       />
       <Hero onSearch={() => setSearchOpen(true)} />
       <QuickActions />
+      <RegisteredClients />
       <ConnectedServices />
       <PillarStrip />
       <WhyDigiAds />
